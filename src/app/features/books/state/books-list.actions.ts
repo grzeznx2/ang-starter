@@ -5,5 +5,6 @@ export const booksListActions = createActionGroup({
   events: {
     'Load List': emptyProps(),
     'Load List Success ': emptyProps(),
+    'Load List Failure': emptyProps(),
   },
 });
