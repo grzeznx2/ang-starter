@@ -14,7 +14,7 @@ import { ListTileComponent } from './list-tile.component';
       <h4>{{ listName }}</h4>
       <div class="flex flex-wrap">
         <app-list-tile *ngFor="let item of list" class="px-4 pb-4 w-1/3">
-          <ng-container *ngTemplateOutlet="optionTemplateRef; context: { $implicit: item }" />
+          <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />
         </app-list-tile>
       </div>
     </section>
@@ -25,8 +25,6 @@ import { ListTileComponent } from './list-tile.component';
 export class ListShellComponent<T> {
   @Input({ required: true }) listName!: string;
   @Input({ required: true }) list!: T[];
-  @Input()
-  optionTemplateRef!: TemplateRef<any>;
 
   @ContentChild('item') itemTemplate!: TemplateRef<any>;
 }
