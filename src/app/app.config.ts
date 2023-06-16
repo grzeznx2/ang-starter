@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,9 +10,11 @@ import { provideRouterStore } from '@ngrx/router-store';
 import { booksListReducer } from './features/books/state/books-list.reducer';
 import * as BooksListEffects from './features/books/state/books-list.effects';
 import { AppState } from './core/app-state.model';
+import { MatNativeDateModule } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(MatNativeDateModule),
     provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
     provideAnimations(),
