@@ -27,7 +27,7 @@ export const routes: Routes = [
           },
           {
             path: 'manage/offers',
-            loadComponent: () => import('./features/offers/add-offer.page.component'),
+            loadComponent: () => import('./features/offers/manage-offers.page.component'),
           },
           {
             path: 'offers',

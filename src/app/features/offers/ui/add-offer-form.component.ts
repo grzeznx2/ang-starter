@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,15 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
-export interface AddOfferFormValue {
-  name: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  link: string;
-  categories: { id: number; name: string }[];
-}
+import { AddOfferFormValue } from '../data-access/offers.api.service';
 
 @Component({
   selector: 'app-add-offer-form',
@@ -31,7 +23,7 @@ export interface AddOfferFormValue {
     CommonModule,
   ],
   template: `
-    <form [formGroup]="form" (ngSubmit)="add()">
+    <form [formGroup]="form" (ngSubmit)="addOffer()">
       <mat-form-field>
         <mat-label>Nazwa</mat-label>
         <textarea formControlName="name" matInput></textarea>
@@ -91,6 +83,7 @@ export interface AddOfferFormValue {
 })
 export class AddOfferFormComponent {
   @Input() formValue?: AddOfferFormValue;
+  @Output() add = new EventEmitter<AddOfferFormValue>();
 
   private builder = inject(NonNullableFormBuilder);
 
@@ -114,7 +107,7 @@ export class AddOfferFormComponent {
     categories: this.builder.control<{ id: number; name: string }[]>(this.formValue?.categories || []),
   });
 
-  add() {
-    console.log(this.form.value);
+  addOffer() {
+    this.add.emit(this.form.getRawValue());
   }
 }
