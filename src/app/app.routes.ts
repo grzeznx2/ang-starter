@@ -26,6 +26,18 @@ export const routes: Routes = [
             loadComponent: () => import('./features/ngo/ngo-list.page.component'),
           },
           {
+            path: 'offers',
+            loadComponent: () => import('./features/offers/offers-list.page.component'),
+          },
+          {
+            path: 'companies',
+            loadComponent: () => import('./features/companies/companies-list.page.component'),
+          },
+          {
+            path: 'projects',
+            loadComponent: () => import('./features/projects/projects-list.page.component'),
+          },
+          {
             path: '',
             pathMatch: 'full',
             redirectTo: 'auctions',
