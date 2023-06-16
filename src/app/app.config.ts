@@ -1,19 +1,22 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
-import { booksListReducer } from './books/state/books-list.reducer';
-import { BooksListEffects } from './books/state/books-list.effects';
+import { booksListReducer } from './features/books/state/books-list.reducer';
+import * as BooksListEffects from './features/books/state/books-list.effects';
+import { AppState } from './core/app-state.model';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideHttpClient(),
+    provideRouter(routes, withComponentInputBinding()),
     provideAnimations(),
-    provideStore({ booksList: booksListReducer }),
+    provideStore<AppState>({ booksList: booksListReducer }),
     provideEffects(BooksListEffects),
     provideRouterStore(),
   ],
