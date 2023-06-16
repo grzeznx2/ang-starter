@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { Store } from '@ngrx/store';
-import { loadBooksList } from '../books/state/books-list.actions';
+import { booksListActions } from '../books/state/books-list.actions';
 import { selectBooksListCallState } from '../books/state/books-list.selectors';
 
 
@@ -19,6 +19,6 @@ export class TestcompComponent {
   constructor(private store: Store){}
 
   loadBooks(){
-    this.store.dispatch(loadBooksList())
+    this.store.dispatch(booksListActions.loadList())
   }
 }

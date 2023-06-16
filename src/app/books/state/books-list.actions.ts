@@ -1,9 +1,9 @@
-import { createAction } from '@ngrx/store';
+import { createActionGroup, emptyProps } from '@ngrx/store';
 
-export const loadBooksList = createAction(
-  '[Books] Load list',
-);
-
-export const loadBooksListSuccess = createAction(
-  '[Books] Load list success',
-);
+export const booksListActions = createActionGroup({
+  source: '[Books]',
+  events: {
+    'Load List': emptyProps(),
+    'Load List Success ': emptyProps(),
+  },
+});

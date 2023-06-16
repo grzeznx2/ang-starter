@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadBooksList, loadBooksListSuccess } from './books-list.actions';
+import { booksListActions } from './books-list.actions';
 import {tap, map, delay} from 'rxjs'
 
 
@@ -8,9 +8,9 @@ import {tap, map, delay} from 'rxjs'
 export class BooksListEffects {
 
   loadList$ = createEffect(() => this.actions$.pipe(
-    ofType(loadBooksList),
+    ofType(booksListActions.loadList),
     delay(2000),
-    map(()=>loadBooksListSuccess())
+    map(()=>booksListActions.loadListSuccess())
   )
   )
   constructor(
