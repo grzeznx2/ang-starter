@@ -10,6 +10,11 @@ import { booksListReducer } from './books/state/books-list.reducer';
 import { BooksListEffects } from './books/state/books-list.effects';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations(), provideStore({booksList: booksListReducer}), provideEffects(BooksListEffects), provideRouterStore()],
-
+  providers: [
+    provideRouter(routes),
+    provideAnimations(),
+    provideStore({ booksList: booksListReducer }),
+    provideEffects(BooksListEffects),
+    provideRouterStore(),
+  ],
 };
