@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TestcompComponent } from '../shared/testcomp.component';
 
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, TestcompComponent],
+  imports: [RouterOutlet],
   template: `
-    <app-testcomp />
+    <header>Kołobrzeg NGO</header>
     <router-outlet />
   `,
 })
