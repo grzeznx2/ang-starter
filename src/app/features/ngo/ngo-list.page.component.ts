@@ -9,7 +9,7 @@ import { NGOsStateService } from './data-access/ngos.state.service';
   standalone: true,
   imports: [CommonModule, ListShellComponent],
   template: `
-    <ng-container *ngIf="ngosAuthState() as state">
+    <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Ngo's" [list]="state.list">
         <div #filters>filtry</div>
         <ng-template #item let-ngo>
@@ -22,10 +22,10 @@ import { NGOsStateService } from './data-access/ngos.state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class NgoListPageComponent implements OnInit {
-  ngosService = inject(NGOsApiService);
-  ngosAuthState = inject(NGOsStateService).$value;
+  service = inject(NGOsApiService);
+  state = inject(NGOsStateService).$value;
 
   ngOnInit(): void {
-    this.ngosService.getAll();
+    this.service.getAll();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AddOfferFormComponent } from './ui/add-offer-form.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,10 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { OffersApiService } from './data-access/offers.api.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule, NgIf } from '@angular/common';
-import { filter, map } from 'rxjs';
+import { filter, map, tap } from 'rxjs';
 import { Offer } from './model/offer.model';
 import { OfferFormDialogComponent } from './ui/offer-form-dialog.component';
 import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.component';
+import { OffersStateService } from './data-access/offers.state.service';
 
 @Component({
   selector: 'app-manage-offers-page',
@@ -51,14 +52,15 @@ import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.co
     </table>
   `,
 })
-export default class ManageOffersPageComponent {
+export default class ManageOffersPageComponent implements OnInit {
   service = inject(OffersApiService);
+  stateService = inject(OffersStateService);
   displayedColumns: string[] = ['position', 'name', 'actions'];
 
   dataSource = toSignal(
-    this.service.getAll().pipe(
+    this.stateService.value$.pipe(
       map(data =>
-        data.map((offer, index) => ({
+        data.list.map((offer, index) => ({
           position: index + 1,
           ...offer,
         }))
@@ -67,6 +69,10 @@ export default class ManageOffersPageComponent {
   );
 
   dialog = inject(MatDialog);
+
+  ngOnInit(): void {
+    this.service.getAll();
+  }
 
   remove(offer: Offer) {
     this.dialog
