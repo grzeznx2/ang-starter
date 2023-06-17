@@ -27,7 +27,7 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
   template: `
     <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Projekty" [list]="state.list">
-        <div #filters>
+        <div #filters class="mb-2">
           <div class="ml-auto">
             <label> Sortuj:</label>
             <select>

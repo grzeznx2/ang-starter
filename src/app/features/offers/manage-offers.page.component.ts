@@ -2,12 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AddOfferFormComponent } from './ui/add-offer-form.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { OffersApiService } from './data-access/offers.api.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CommonModule, NgIf } from '@angular/common';
-import { filter, map, tap } from 'rxjs';
+import { NgIf } from '@angular/common';
+import { filter, map } from 'rxjs';
 import { Offer } from './model/offer.model';
 import { OfferFormDialogComponent } from './ui/offer-form-dialog.component';
 import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.component';
@@ -19,7 +19,7 @@ import { OffersStateService } from './data-access/offers.state.service';
   imports: [MatTableModule, AddOfferFormComponent, MatIconModule, MatDialogModule, NgIf, MatButtonModule],
   template: `
     <header>
-      <h2>Konkursy konkursiki</h2>
+      <h2>Zarządzaj ofertami</h2>
     </header>
     <button mat-raised-button color="primary" (click)="openOfferForm()">Dodaj</button>
 
