@@ -1,4 +1,18 @@
 {
+  "bussinessAreas": [
+    {
+      "id": 1,
+      "name": "Sport i zdrowie"
+    },
+    {
+      "id": 2,
+      "name": "Kultura"
+    },
+    {
+      "id": 3,
+      "name": "Edukacja i wychowanie"
+    }
+  ],
   "offers": [
     {
       "name": "jeszcze lepszy konkurs",

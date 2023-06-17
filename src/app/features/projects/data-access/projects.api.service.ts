@@ -37,14 +37,18 @@ export class ProjectsApiService extends HttpBaseService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
+  getById(id: string) {
+    return this.http.get<Project>(`${this.url}/${id}`);
+  }
+
   getAll(params: GetAllProjectsParams = {}) {
     this.stateService.setState({ loadListCallState: 'LOADING' });
 
     this.http
       .get<Project[]>(`${this.url}`)
       .pipe(
-        tap(Projects => {
-          this.stateService.setState({ loadListCallState: 'LOADED', list: Projects });
+        tap(projects => {
+          this.stateService.setState({ loadListCallState: 'LOADED', list: projects });
         })
       )
       .subscribe();

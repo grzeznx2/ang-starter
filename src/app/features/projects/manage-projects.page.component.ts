@@ -10,6 +10,7 @@ import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.co
 import { ProjectsApiService } from './data-access/projects.api.service';
 import { Project } from './model/project.model';
 import { ProjectsStateService } from './data-access/projects.state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-projects-page',
@@ -17,7 +18,7 @@ import { ProjectsStateService } from './data-access/projects.state.service';
   imports: [MatTableModule, MatIconModule, MatDialogModule, NgIf, MatButtonModule],
   template: `
     <header>
-      <h2>Konkursy konkursiki</h2>
+      <h2>Zarządzaj projektami</h2>
     </header>
     <button mat-raised-button color="primary" (click)="goToProjectForm()">Dodaj</button>
 
@@ -51,6 +52,7 @@ import { ProjectsStateService } from './data-access/projects.state.service';
   `,
 })
 export default class ManageProjectsPageComponent {
+  private router = inject(Router);
   service = inject(ProjectsApiService);
   stateService = inject(ProjectsStateService);
   displayedColumns: string[] = ['position', 'name', 'actions'];
@@ -80,5 +82,11 @@ export default class ManageProjectsPageComponent {
       });
   }
 
-  goToProjectForm(project?: Project) {}
+  ngOnInit() {
+    this.service.getAll();
+  }
+
+  goToProjectForm(project?: Project) {
+    this.router.navigateByUrl(`/manage/projects/form${project ? `/${project.id}` : ''}`);
+  }
 }
