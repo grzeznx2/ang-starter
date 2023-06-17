@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { ProjectsStateService } from './projects.state.service';
 import { tap } from 'rxjs';
 import { Project } from '../model/project.model';
+import { Router } from '@angular/router';
 
 export interface GetAllProjectsParams {}
 
@@ -20,21 +21,45 @@ export interface AddProjectFormValue {
 })
 export class ProjectsApiService extends HttpBaseService {
   private stateService = inject(ProjectsStateService);
+  private router = inject(Router);
 
   constructor() {
     super('projects');
   }
 
   add(payload: AddProjectFormValue) {
-    return this.http.post<Project>(`${this.url}`, payload);
+    this.http
+      .post<Project>(`${this.url}`, payload)
+      .pipe(
+        tap(() => {
+          this.getAll();
+          this.router.navigateByUrl('/manage/projects');
+        })
+      )
+      .subscribe();
   }
 
   update(id: string, payload: AddProjectFormValue) {
-    return this.http.patch<Project>(`${this.url}/${id}`, payload);
+    this.http
+      .patch<Project>(`${this.url}/${id}`, payload)
+      .pipe(
+        tap(() => {
+          this.getAll();
+          this.router.navigateByUrl('/manage/projects');
+        })
+      )
+      .subscribe();
   }
 
   delete(id: string) {
-    return this.http.delete(`${this.url}/${id}`);
+    this.http
+      .delete(`${this.url}/${id}`)
+      .pipe(
+        tap(() => {
+          this.getAll();
+        })
+      )
+      .subscribe();
   }
 
   getById(id: string) {

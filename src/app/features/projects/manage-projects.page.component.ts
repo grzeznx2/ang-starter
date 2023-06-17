@@ -114,7 +114,7 @@ export default class ManageProjectsPageComponent implements OnInit {
       .afterClosed()
       .pipe(filter(Boolean))
       .subscribe(() => {
-        this.service.delete(project.id).subscribe(console.log);
+        this.service.delete(project.id);
       });
   }
 

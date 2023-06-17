@@ -163,9 +163,9 @@ export default class ProjectFormPageComponent implements OnInit {
 
   addProject() {
     if (this.project) {
-      this.service.update(this.project.id, this.form.getRawValue()).subscribe();
+      this.service.update(this.project.id, this.form.getRawValue());
     } else {
-      this.service.add(this.form.getRawValue()).subscribe();
+      this.service.add(this.form.getRawValue());
     }
   }
 }
