@@ -1,8 +1,10 @@
 import { User } from 'src/app/auth/data_access/auth.state.service';
-import { Company } from '../../companies/model/company.model';
 import { Project } from '../../projects/model/project.model';
 
-export interface BusinessArea {}
+export interface BusinessArea {
+  name: string;
+  id: number;
+}
 
 export type LegalStatusNGO = 'A' | 'B';
 

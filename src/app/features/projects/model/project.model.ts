@@ -1,6 +1,11 @@
 import { BusinessArea } from '../../ngo/model/ngo.model';
 
-export type ProjectStatus = any;
+export const PROJECT_STATUS = {
+  IN_PREPARATION: 'IN_PREPARATION',
+  PLANNED: 'PLANNED',
+} as const;
+
+export type ProjectStatus = keyof typeof PROJECT_STATUS;
 
 export interface Project {
   id: string;

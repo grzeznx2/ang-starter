@@ -1,5 +1,18 @@
 {
-  "projects": [],
+  "bussinessAreas": [
+    {
+      "id": 1,
+      "name": "Sport i zdrowie"
+    },
+    {
+      "id": 2,
+      "name": "Kultura"
+    },
+    {
+      "id": 3,
+      "name": "Edukacja i wychowanie"
+    }
+  ],
   "offers": [
     {
       "name": "jeszcze lepszy konkurs",
@@ -93,13 +106,31 @@
     }
   ],
   "projects": [
-    {"id": 1, "name": "Dofinansowanie kopalni"},
-    {"id": 2, "name": "Zakup paszy dla ryb"},
-    {"id": 3, "name": "Inwestowanie w bursztyn"}
+    {
+      "id": 1,
+      "name": "Dofinansowanie kopalni"
+    },
+    {
+      "id": 2,
+      "name": "Zakup paszy dla ryb"
+    },
+    {
+      "id": 3,
+      "name": "Inwestowanie w bursztyn"
+    }
   ],
   "companies": [
-    {"id": 1, "name": "Piraci z Karaibów"},
-    {"id": 2, "name": "Natura 2030"},
-    {"id": 3, "name": "Nadmorski przygody"}
+    {
+      "id": 1,
+      "name": "Piraci z Karaibów"
+    },
+    {
+      "id": 2,
+      "name": "Natura 2030"
+    },
+    {
+      "id": 3,
+      "name": "Nadmorski przygody"
+    }
   ]
 }
