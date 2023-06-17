@@ -1,19 +1,31 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListShellComponent } from 'src/app/shared/ui/list-shell.component';
+import { NGOsApiService } from './data-access/ngos.api.service';
+import { NGOsStateService } from './data-access/ngos.state.service';
 
 @Component({
   selector: 'app-ngo-list-page',
   standalone: true,
   imports: [CommonModule, ListShellComponent],
   template: `
-    <app-list-shell listName="Ngo's" [list]="[{ name: 'yo' }, { name: 'siema' }]">
-      <div #filters>filtry</div>
-      <ng-template #item let-item>
-        <div>jestem wzorem {{ item.name }}</div>
-      </ng-template>
-    </app-list-shell>
+    <ng-container *ngIf="ngosAuthState() as state">
+      <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Ngo's" [list]="state.list">
+        <div #filters>filtry</div>
+        <ng-template #item let-ngo>
+          <div>{{ ngo.name }}</div>
+        </ng-template>
+      </app-list-shell>
+      <p *ngIf="state.loadListCallState === 'LOADING'">LOADING...</p>
+    </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class NgoListPageComponent {}
+export default class NgoListPageComponent implements OnInit {
+  ngosService = inject(NGOsApiService);
+  ngosAuthState = inject(NGOsStateService).$value;
+
+  ngOnInit(): void {
+    this.ngosService.getAll();
+  }
+}

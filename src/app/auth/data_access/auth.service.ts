@@ -17,11 +17,12 @@ export class AuthService extends HttpBaseService {
   router = inject(Router);
   authStateService = inject(AuthStateService);
 
+  constructor() {
+    super('users');
+  }
+
   login(loginFormValue: LoginFormValue) {
-    this.http
-      .get<User[]>(`http://localhost:3000/users?role=${loginFormValue.login}`)
-      .pipe(tap(this.setAuthenticatedUser))
-      .subscribe();
+    this.http.get<User[]>(`${this.url}?role=${loginFormValue.login}`).pipe(tap(this.setAuthenticatedUser)).subscribe();
   }
 
   logout() {

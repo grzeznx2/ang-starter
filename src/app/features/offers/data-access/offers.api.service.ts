@@ -17,12 +17,16 @@ export interface AddOfferFormValue {
   providedIn: 'root',
 })
 export class OffersApiService extends HttpBaseService {
+  constructor() {
+    super('offers');
+  }
+
   add(payload: AddOfferFormValue) {
-    return this.http.post<Offer>(`${this.API_URL}/offers`, payload);
+    return this.http.post<Offer>(`${this.url}`, payload);
   }
 
   getAll(params: GetAllOffersParams = {}) {
-    return this.http.get<Offer[]>(`${this.API_URL}/offers`);
+    return this.http.get<Offer[]>(`${this.url}`);
 
     // return of<Offer[]>([]).pipe(delay(500));
   }
