@@ -11,7 +11,7 @@ import { ListTileComponent } from './list-tile.component';
       <ng-content #filters></ng-content>
     </header>
     <section>
-      <h4>{{ listName }}</h4>
+      <p class="text-2xl font-semibold">{{ listName }}</p>
       <div class="flex flex-wrap">
         <app-list-tile *ngFor="let item of list" class="px-4 pb-4 w-1/3">
           <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }" />

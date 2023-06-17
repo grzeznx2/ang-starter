@@ -27,7 +27,15 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
   template: `
     <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Projekty" [list]="state.list">
-        <div #filters>filtry</div>
+        <div #filters>
+          <div class="ml-auto">
+            <label> Sortuj:</label>
+            <select>
+              <option>od najnowszych</option>
+              <option>od najstarszych</option>
+            </select>
+          </div>
+        </div>
         <ng-template #item let-project>
           <div class="">
             <div>
@@ -41,11 +49,20 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
               {{ project.status?.name }}
             </div>
             <p class="font-semibold text-lg">{{ project.name }}</p>
+            <div class="mb-2">
+              <span *ngFor="let tag of project.tags; let last = last">#{{ tag }} </span>
+            </div>
             <mat-divider />
-            <div class="flex justify-between mt-4">
-              <div class="flex flex-col"><mat-icon>paid</mat-icon> {{ project.budget }}</div>
-              <div *ngIf="project.possibleVolunteer" class="flex flex-col">
+            <div class="flex justify-between mt-4 items-center">
+              <div class="flex flex-col items-center">
+                <span class="text-xs"> Budżet</span><mat-icon>paid</mat-icon>
+                <span class="text-xs">{{ project.budget }}</span>
+              </div>
+              <div *ngIf="project.possibleVolunteer" class="flex flex-col items-center">
+                <span class="text-xs"> Szukamy</span>
+
                 <mat-icon>accessibility new</mat-icon>
+                <span class="text-xs">wolontariuszy</span>
               </div>
               <div *ngIf="project.cooperationMessage" class="flex flex-col">
                 <mat-icon [matTooltip]="project.cooperationMessage">spatial_audio_off</mat-icon>

@@ -50,7 +50,10 @@ export interface MenuItem {
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
           <div class="flex justify-between items-center w-full">
-            <span>Kołobrzeg NGO</span>
+            <div>
+              <mat-icon aria-label="Side nav toggle icon">waves</mat-icon>
+              <span>Kołobrzeg NGO</span>
+            </div>
             <div class="flex justify-between items-center">
               <a routerLink="/messages" class="block"
                 ><mat-icon class="!w-9 !h-9 text-4xl"> local_post_office</mat-icon>
