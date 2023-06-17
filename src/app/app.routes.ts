@@ -59,6 +59,11 @@ export const routes: Routes = [
           {
             path: 'manage/ngo-profile',
             loadComponent: () => import('./features/ngo/ngo-profile.page.component'),
+            resolve: {
+              bussinessAreas: () => {
+                return inject(BusinessAreaApiService).getAll().pipe(tap(console.log));
+              },
+            },
           },
           {
             path: 'offers',
