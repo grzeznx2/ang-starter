@@ -25,6 +25,11 @@ export class AuthService extends HttpBaseService {
       .subscribe();
   }
 
+  logout() {
+    this.authStateService.setState({ status: 'NON_AUTHENTICATED', user: null });
+    this.router.navigateByUrl('/');
+  }
+
   private setAuthenticatedUser = (users: User[]) => {
     const [user] = users;
     if (!user) return;

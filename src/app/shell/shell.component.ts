@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HasRolePipe } from '../auth/utils/has-role.pipe';
 import { UserRoles } from '../core/user-roles.enum';
+import { AuthService } from '../auth/data_access/auth.service';
 
 export interface MenuItem {
   link: string;
@@ -46,7 +47,10 @@ export interface MenuItem {
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-          <span>Kołobrzeg NGO</span>
+          <div class="flex justify-between w-full">
+            <span>Kołobrzeg NGO</span>
+            <button mat-button (click)="logout()">Wyloguj</button>
+          </div>
         </mat-toolbar>
         <main class="p-4">
           <router-outlet />
@@ -90,6 +94,11 @@ export interface MenuItem {
 })
 export default class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  private authService = inject(AuthService);
+
+  logout() {
+    this.authService.logout();
+  }
   menuItems: MenuItem[] = [
     { link: '/auctions', displayValue: 'Aukcje', roles: ['ADMIN', 'COMPANY_USER', 'CITIZEN'] },
     { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
