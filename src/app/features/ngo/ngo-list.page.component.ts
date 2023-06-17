@@ -37,6 +37,9 @@ import { LegalStatusPipe } from './utils/legal-status.pipe';
             <p class="font-semibold text-lg">{{ ngo.name }}</p>
           </div>
           <div class="mb-4 relative">
+            <div class="absolute right-0 top-0 w-8 h-8 m-2 cursor-pointer">
+              <img src="assets/images/blik-logo.jpeg" alt="My Image" />
+            </div>
             <img [src]="ngo.logo" />
             <div class="absolute bottom-0 left-0 w-full h-10 p-4 bg-green-500 text-white flex items-center">
               {{ ngo.legalStatus | legalStatus }}
@@ -47,16 +50,16 @@ import { LegalStatusPipe } from './utils/legal-status.pipe';
           </div>
           <mat-divider />
           <div class="flex justify-between mt-4">
-            <div (click)="openMessageModal(ngo.id, ngo.name)">
+            <div class="cursor-pointer" (click)="openMessageModal(ngo.id, ngo.name)">
               <mat-icon>forward_to_inbox</mat-icon>
             </div>
-            <div (click)="openResourcesModal(ngo.resources)">
+            <div class="cursor-pointer" (click)="openResourcesModal(ngo.resources)">
               <mat-icon>build</mat-icon>
             </div>
-            <div (click)="openCategoriessModal(ngo.businnessAreas)">
+            <div class="cursor-pointer" (click)="openCategoriessModal(ngo.businnessAreas)">
               <mat-icon>assignment</mat-icon>
             </div>
-            <div (click)="openContactModal(ngo.address, ngo.phone, ngo.email, ngo.website)">
+            <div class="cursor-pointer" (click)="openContactModal(ngo.address, ngo.phone, ngo.email, ngo.website)">
               <mat-icon> contact_mail</mat-icon>
             </div>
           </div>
