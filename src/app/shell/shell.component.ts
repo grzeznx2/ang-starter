@@ -48,7 +48,7 @@ export interface MenuItem {
           </button>
           <span>Kołobrzeg NGO</span>
         </mat-toolbar>
-        <main>
+        <main class="p-4">
           <router-outlet />
         </main>
       </mat-sidenav-content>
@@ -91,8 +91,12 @@ export interface MenuItem {
 export default class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
   menuItems: MenuItem[] = [
-    { link: '/auctions', displayValue: 'Aukcje', roles: ['ADMIN'] },
-    { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN'] },
+    { link: '/auctions', displayValue: 'Aukcje', roles: ['ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/manage/offers', displayValue: 'Zarządzaj ofertami', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER'] },
+    { link: '/companies', displayValue: 'MŚP', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/projects', displayValue: 'Lista projektów', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
