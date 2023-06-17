@@ -8,7 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { HasRolePipe } from '../auth/utils/has-role.pipe';
+import { UserRoles } from '../core/user-roles.enum';
+import { AuthService } from '../auth/data_access/auth.service';
+
+export interface MenuItem {
+  link: string;
+  displayValue: string;
+  roles: UserRoles[];
+}
 
 @Component({
   selector: 'app-shell',
@@ -23,9 +32,9 @@ import { RouterOutlet } from '@angular/router';
         [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item href="#">Link 1</a>
-          <a mat-list-item href="#">Link 2</a>
-          <a mat-list-item href="#">Link 3</a>
+          <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">{{
+            menuItem.displayValue
+          }}</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -38,9 +47,12 @@ import { RouterOutlet } from '@angular/router';
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-          <span>Kołobrzeg NGO</span>
+          <div class="flex justify-between w-full">
+            <span>Kołobrzeg NGO</span>
+            <button mat-button (click)="logout()">Wyloguj</button>
+          </div>
         </mat-toolbar>
-        <main>
+        <main class="p-4">
           <router-outlet />
         </main>
       </mat-sidenav-content>
@@ -76,10 +88,25 @@ import { RouterOutlet } from '@angular/router';
     MatIconModule,
     CommonModule,
     RouterOutlet,
+    HasRolePipe,
+    RouterModule,
   ],
 })
 export default class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  private authService = inject(AuthService);
+
+  logout() {
+    this.authService.logout();
+  }
+  menuItems: MenuItem[] = [
+    { link: '/auctions', displayValue: 'Aukcje', roles: ['ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/manage/offers', displayValue: 'Zarządzaj ofertami', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER'] },
+    { link: '/companies', displayValue: 'MŚP', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/projects', displayValue: 'Lista projektów', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),

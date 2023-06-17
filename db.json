@@ -13,6 +13,40 @@
         }
       ],
       "id": 1
+    },
+    {
+      "name": "",
+      "description": "",
+      "startDate": "",
+      "endDate": "",
+      "link": "",
+      "categories": {
+        "name": "kategoria2",
+        "id": 2
+      },
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "role": "MANAGER"
+    },
+    {
+      "id": 3,
+      "role": "NGO_USER"
+    },
+    {
+      "id": 4,
+      "role": "COMPANY_USER"
+    },
+    {
+      "id": 5,
+      "role": "CITIZEN"
     }
   ]
 }
