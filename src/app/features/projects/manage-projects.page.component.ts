@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
@@ -51,7 +51,7 @@ import { Router } from '@angular/router';
     </table>
   `,
 })
-export default class ManageProjectsPageComponent {
+export default class ManageProjectsPageComponent implements OnInit {
   private router = inject(Router);
   service = inject(ProjectsApiService);
   stateService = inject(ProjectsStateService);

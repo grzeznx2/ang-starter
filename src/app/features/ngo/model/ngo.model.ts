@@ -11,6 +11,7 @@ export type LegalStatusNGO = 'A' | 'B';
 export interface NGO {
   id: string;
   name: string;
+  logo: string;
   owners: User[];
   address: string;
   phone: string;
@@ -19,7 +20,7 @@ export interface NGO {
   socialLinks: string[];
   creationDate: string;
   description: string;
-  businnesAreas: BusinessArea[];
+  businnessAreas: BusinessArea[];
   KRS: string;
   NIP: string;
   resources: string[];
