@@ -1,5 +1,4 @@
-import { Pipe, PipeTransform, inject } from '@angular/core';
-import { WithUserRoles } from 'src/app/core/user-roles.enum';
+import { Pipe, PipeTransform } from '@angular/core';
 import { LegalStatusNGO, legalStatusMap } from '../model/ngo.model';
 
 @Pipe({

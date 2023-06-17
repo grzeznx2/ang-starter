@@ -6,7 +6,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { OffersApiService } from './data-access/offers.api.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NgIf } from '@angular/common';
+import { DatePipe, NgIf, SlicePipe } from '@angular/common';
 import { filter, map } from 'rxjs';
 import { Offer } from './model/offer.model';
 import { OfferFormDialogComponent } from './ui/offer-form-dialog.component';
@@ -16,7 +16,16 @@ import { OffersStateService } from './data-access/offers.state.service';
 @Component({
   selector: 'app-manage-offers-page',
   standalone: true,
-  imports: [MatTableModule, AddOfferFormComponent, MatIconModule, MatDialogModule, NgIf, MatButtonModule],
+  imports: [
+    MatTableModule,
+    AddOfferFormComponent,
+    MatIconModule,
+    MatDialogModule,
+    NgIf,
+    MatButtonModule,
+    DatePipe,
+    SlicePipe,
+  ],
   template: `
     <header>
       <h2>Zarządzaj ofertami</h2>
@@ -24,19 +33,44 @@ import { OffersStateService } from './data-access/offers.state.service';
     <button mat-raised-button color="primary" (click)="openOfferForm()">Dodaj</button>
 
     <table *ngIf="dataSource() as data" mat-table [dataSource]="data" class="mat-elevation-z8">
-      <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>Lp</th>
         <td mat-cell *matCellDef="let element">{{ element.position }}</td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Opis</th>
+        <td class="py-4" mat-cell *matCellDef="let element">{{ element.description | slice : 0 : 100 }}...</td>
+      </ng-container>
+
+      <ng-container matColumnDef="targetAudience">
+        <th mat-header-cell *matHeaderCellDef>Grupa docelowa</th>
+        <td mat-cell *matCellDef="let element">{{ element.targetAudience }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="budget">
+        <th mat-header-cell *matHeaderCellDef>Budżet (PLN)</th>
+        <td mat-cell *matCellDef="let element">{{ element.budget }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fundingLevel">
+        <th mat-header-cell *matHeaderCellDef>Poziom finansowania</th>
+        <td mat-cell *matCellDef="let element">{{ element.fundingLevel }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef>Data od</th>
+        <td mat-cell *matCellDef="let element">{{ element.startDate | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef>Data do</th>
+        <td mat-cell *matCellDef="let element">{{ element.endDate | date }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
@@ -55,7 +89,17 @@ import { OffersStateService } from './data-access/offers.state.service';
 export default class ManageOffersPageComponent implements OnInit {
   service = inject(OffersApiService);
   stateService = inject(OffersStateService);
-  displayedColumns: string[] = ['position', 'name', 'actions'];
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'description',
+    'targetAudience',
+    'budget',
+    'fundingLevel',
+    'startDate',
+    'endDate',
+    'actions',
+  ];
 
   dataSource = toSignal(
     this.stateService.value$.pipe(

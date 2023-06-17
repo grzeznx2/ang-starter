@@ -12,6 +12,20 @@ export const PROJECT_STATUS = {
 
 export type ProjectStatus = keyof typeof PROJECT_STATUS;
 
+export type ProjectStatusMap = {
+  [K in ProjectStatus]: string;
+};
+
+export const projectStatusMap: ProjectStatusMap = {
+  IDEA: 'Pomysł',
+  PLANNED: 'Planowanie',
+  OBTAINING_FINANCING: 'Pozyskiwanie finansowania',
+  IN_SETTLEMENT: 'W trakcie rozliczania',
+  IN_PROMOTION: 'W trakcie promocji',
+  IN_PROGRESS: 'W trakcie realizacji',
+  COMPLETED: 'Zakończony',
+};
+
 export interface Project {
   id: string;
   name: string;

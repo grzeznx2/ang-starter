@@ -11,6 +11,7 @@ import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/u
 import { tap, take } from 'rxjs';
 import { MessagesApiService } from '../messages/data-access/messages.api.service';
 import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProjectStatusPipe } from './utils/project-status.pipe';
 
 @Component({
   selector: 'app-projects.page',
@@ -24,6 +25,7 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
     MatDialogModule,
     MatSnackBarModule,
     DatePipe,
+    ProjectStatusPipe,
   ],
   template: `
     <ng-container *ngIf="state() as state">
@@ -50,7 +52,7 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
               </div>
             </div>
             <div class="rounded-md w-fit px-2 mt-4 mb-2 bg-green-400 text-green-900">
-              {{ project.status?.name }}
+              {{ project.status?.name | projectStatus }}
             </div>
             <p class="font-semibold text-lg">{{ project.name }}</p>
             <div class="mb-2">
@@ -58,7 +60,7 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
             </div>
             <mat-divider />
             <div class="flex justify-between mt-4 items-center">
-              <div class="flex flex-col items-center">
+              <div *ngIf="project.budget" class="flex flex-col items-center">
                 <span class="text-xs"> Budżet</span><mat-icon>paid</mat-icon>
                 <span class="text-xs">{{ project.budget }}</span>
               </div>
@@ -80,9 +82,6 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
       </app-list-shell>
       <p *ngIf="state.loadListCallState === 'LOADING'">LOADING...</p>
     </ng-container>
-
-    <!-- <img
-      src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" /> -->
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
