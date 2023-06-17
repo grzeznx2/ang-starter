@@ -20,7 +20,7 @@ import { LoginFormValue } from '../data_access/auth.service';
       <br />
       <mat-form-field>
         <mat-label>Hasło</mat-label>
-        <input formControlName="password" matInput />
+        <input formControlName="password" matInput type="password" />
       </mat-form-field>
       <br />
 
