@@ -16,6 +16,7 @@ import { AuthService } from '../auth/data_access/auth.service';
 export interface MenuItem {
   link: string;
   displayValue: string;
+  icon?: string;
   roles: UserRoles[];
 }
 
@@ -32,9 +33,10 @@ export interface MenuItem {
         [opened]="(isHandset$ | async) === false">
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">{{
-            menuItem.displayValue
-          }}</a>
+          <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">
+            <mat-icon *ngIf="menuItem.icon">{{ menuItem.icon }}</mat-icon>
+            {{ menuItem.displayValue }}</a
+          >
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -48,7 +50,7 @@ export interface MenuItem {
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
           <div class="flex justify-between w-full">
-            <span>Kołobrzeg NGO</span>
+            <span><mat-icon class="align-middle text-xl">water</mat-icon>Kołobrzeg NGO</span>
             <button mat-button (click)="logout()">Wyloguj</button>
           </div>
         </mat-toolbar>
@@ -90,6 +92,7 @@ export interface MenuItem {
     RouterOutlet,
     HasRolePipe,
     RouterModule,
+    MatIconModule,
   ],
 })
 export default class ShellComponent {
@@ -100,18 +103,35 @@ export default class ShellComponent {
     this.authService.logout();
   }
   menuItems: MenuItem[] = [
-    { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
-    { link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
-    { link: '/companies', displayValue: 'Lista MŚP', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
-    { link: '/projects', displayValue: 'Lista projektów', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
-
-    { link: '/manage/offers', displayValue: 'Zarządzaj ofertami', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER'] },
+    { icon: '', link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { icon: '', link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
     {
+      icon: 'view_cozy',
+      link: '/companies',
+      displayValue: 'Lista MŚP',
+      roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],
+    },
+    {
+      icon: '',
+      link: '/projects',
+      displayValue: 'Lista projektów',
+      roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],
+    },
+
+    {
+      icon: '',
+      link: '/manage/offers',
+      displayValue: 'Zarządzaj ofertami',
+      roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER'],
+    },
+    {
+      icon: '',
       link: '/manage/projects',
       displayValue: 'Zarządzaj projektami',
       roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],
     },
     {
+      icon: '',
       link: '/manage/ngo-profile',
       displayValue: 'Moja organizacja',
       roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],

@@ -5,5 +5,7 @@ export interface Offer {
   startDate: string;
   endDate: string;
   link: string;
+  closeDeadline: boolean;
+  scope: string;
   categories: { id: number; name: string }[];
 }
