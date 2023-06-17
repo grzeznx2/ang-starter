@@ -89,12 +89,14 @@ export default class ProjectsListPageComponent implements OnInit {
       .afterClosed()
       .pipe(
         tap((value: MessageDialogFormValue) => {
-          this.snackbar.open('Wiadomość została wysłana!', '', {
-            duration: 3000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-          });
-          this.messagesService.send({ ...value, receiverId: id, receiverType: 'ngo' });
+          if (value) {
+            this.snackbar.open('Wiadomość została wysłana!', '', {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'bottom',
+            });
+            this.messagesService.send({ ...value, receiverId: id, receiverType: 'ngo' });
+          }
         }),
         take(1)
       )
