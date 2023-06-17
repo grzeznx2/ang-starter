@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { BusinessArea } from '../ngo/model/ngo.model';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProjectsApiService } from './data-access/projects.api.service';
 
 export type ProjectForm = FormGroup<{
@@ -36,6 +37,7 @@ export type ProjectForm = FormGroup<{
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
+    MatCheckboxModule,
     CommonModule,
   ],
   template: `
@@ -51,6 +53,13 @@ export type ProjectForm = FormGroup<{
       <mat-form-field>
         <mat-label>Opis</mat-label>
         <textarea formControlName="description" matInput></textarea>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Dodaj opis</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Planowany budżet</mat-label>
+        <input formControlName="budget" matInput />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <mat-hint>Dodaj opis</mat-hint>
       </mat-form-field>
@@ -77,6 +86,10 @@ export type ProjectForm = FormGroup<{
           <mat-option *ngFor="let status of projectStatuses" [value]="status">{{ status.name }}</mat-option>
         </mat-select>
       </mat-form-field>
+      <br />
+
+      <mat-checkbox class="example-margin" formControlName="possibleVolunteer">Wolontariat</mat-checkbox>
+
       <br />
 
       <mat-form-field>

@@ -1,4 +1,4 @@
-import { ActivatedRoute, ActivatedRouteSnapshot, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { authGuard } from './auth/utils/auth.guard';
 import { nonAuthGuard } from './auth/utils/non-auth.guard';
 import { inject } from '@angular/core';
