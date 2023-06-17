@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform, inject } from '@angular/core';
 import { AuthStateService } from '../data_access/auth.state.service';
-import { MenuItem } from '../../shell/shell.component';
+import { WithUserRoles } from 'src/app/core/user-roles.enum';
 
 @Pipe({
   name: 'hasRole',
@@ -9,7 +9,7 @@ import { MenuItem } from '../../shell/shell.component';
 export class HasRolePipe implements PipeTransform {
   role = inject(AuthStateService).$value().user?.role;
 
-  transform(menuItems: MenuItem[], ...args: unknown[]): MenuItem[] {
+  transform<T extends WithUserRoles>(menuItems: T[]): T[] {
     if (!this.role) return [];
 
     return menuItems.filter(menuItem => menuItem.roles.includes(this.role!));
