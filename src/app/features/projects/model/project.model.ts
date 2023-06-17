@@ -23,3 +23,8 @@ export interface Project {
   possibleVolunteer: boolean;
   category: BusinessArea[];
 }
+
+export interface NGOProject extends Project {
+  ngoId: string;
+  ngoName: string;
+}
