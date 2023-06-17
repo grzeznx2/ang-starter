@@ -58,6 +58,13 @@ export type ProjectForm = FormGroup<{
       </mat-form-field>
       <br />
       <mat-form-field>
+        <mat-label>Wiadomość do współpracy!</mat-label>
+        <textarea formControlName="cooperationMessage" matInput></textarea>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Dodaj opis</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
         <mat-label>Planowany budżet</mat-label>
         <input formControlName="budget" matInput />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
@@ -126,7 +133,7 @@ export default class ProjectFormPageComponent implements OnInit {
   projectStatuses = [
     {
       id: 1,
-      name: PROJECT_STATUS.IN_PREPARATION,
+      name: PROJECT_STATUS.IDEA,
     },
     {
       id: 2,
@@ -140,7 +147,7 @@ export default class ProjectFormPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.builder.group({
-      status: this.builder.control<ProjectStatus>(this.project?.status || PROJECT_STATUS.IN_PREPARATION),
+      status: this.builder.control<ProjectStatus>(this.project?.status || PROJECT_STATUS.IDEA),
       tags: this.builder.array<FormControl<string>>([]),
       name: this.builder.control(this.project?.name || ''),
       description: this.builder.control(this.project?.description || ''),
@@ -155,6 +162,10 @@ export default class ProjectFormPageComponent implements OnInit {
   }
 
   addProject() {
-    this.service.add(this.form.getRawValue()).subscribe();
+    if (this.project) {
+      this.service.update(this.project.id, this.form.getRawValue()).subscribe();
+    } else {
+      this.service.add(this.form.getRawValue()).subscribe();
+    }
   }
 }
