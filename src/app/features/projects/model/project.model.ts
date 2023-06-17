@@ -19,6 +19,7 @@ export interface Project {
   startTime: string;
   address: string;
   endTime: string;
+  ngo: string;
   budget: number;
   status: ProjectStatus;
   tags: string[];

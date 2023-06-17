@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ProjectsApiService } from './data-access/projects.api.service';
 import { ProjectsStateService } from './data-access/projects.state.service';
 import { ListShellComponent } from 'src/app/shared/ui/list-shell.component';
@@ -23,6 +23,7 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
     MatDividerModule,
     MatDialogModule,
     MatSnackBarModule,
+    DatePipe,
   ],
   template: `
     <ng-container *ngIf="state() as state">
@@ -42,8 +43,11 @@ import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/materia
               <mat-icon class="text-red-600 ml-auto">favorite</mat-icon>
             </div>
             <div class="relative">
-              <div class="absolute bg-black text-white right-0 text-sm px-1 py-2">12/06/2023 17:00</div>
+              <div class="absolute bg-black text-white right-0 text-sm px-1 py-2">{{ project.startTime | date }}</div>
               <img [src]="project.imageLink" />
+              <div class="absolute bottom-0 left-0 w-full h-10 p-4 bg-green-500 text-white flex items-center">
+                {{ project.ngo }}
+              </div>
             </div>
             <div class="rounded-md w-fit px-2 mt-4 mb-2 bg-green-400 text-green-900">
               {{ project.status?.name }}

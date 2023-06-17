@@ -11,9 +11,15 @@ import { booksListReducer } from './features/books/state/books-list.reducer';
 import * as BooksListEffects from './features/books/state/books-list.effects';
 import { AppState } from './core/app-state.model';
 import { MatNativeDateModule } from '@angular/material/core';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localePl);
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: LOCALE_ID, useValue: 'pl-PL' },
     importProvidersFrom(MatNativeDateModule),
     provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
