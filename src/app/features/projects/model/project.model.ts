@@ -1,3 +1,7 @@
+import { BusinessArea } from '../../ngo/model/ngo.model';
+
+export type ProjectStatus = any;
+
 export interface Project {
   id: string;
   name: string;
@@ -12,5 +16,5 @@ export interface Project {
   link: string;
   cooperationMessage?: string;
   possibleVolunteer: boolean;
-  category: BusinessCategory[];
+  category: BusinessArea[];
 }

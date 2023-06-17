@@ -9,6 +9,7 @@ import { map, filter } from 'rxjs';
 import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.component';
 import { ProjectsApiService } from './data-access/projects.api.service';
 import { Project } from './model/project.model';
+import { ProjectsStateService } from './data-access/projects.state.service';
 
 @Component({
   selector: 'app-manage-projects-page',
@@ -51,12 +52,13 @@ import { Project } from './model/project.model';
 })
 export default class ManageProjectsPageComponent {
   service = inject(ProjectsApiService);
+  stateService = inject(ProjectsStateService);
   displayedColumns: string[] = ['position', 'name', 'actions'];
 
   dataSource = toSignal(
-    this.service.getAll().pipe(
+    this.stateService.value$.pipe(
       map(data =>
-        data.map((offer, index) => ({
+        data.list.map((offer, index) => ({
           position: index + 1,
           ...offer,
         }))

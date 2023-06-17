@@ -40,7 +40,7 @@ export class ProjectsApiService extends HttpBaseService {
   getAll(params: GetAllProjectsParams = {}) {
     this.stateService.setState({ loadListCallState: 'LOADING' });
 
-    return this.http
+    this.http
       .get<Project[]>(`${this.url}`)
       .pipe(
         tap(Projects => {
