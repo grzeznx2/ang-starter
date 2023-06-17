@@ -105,7 +105,7 @@ export default class ShellComponent {
     { link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
     { link: '/manage/offers', displayValue: 'Zarządzaj ofertami', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER'] },
     { link: '/companies', displayValue: 'MŚP', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
-    { link: '/projects', displayValue: 'Lista projektów', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
+    { link: '/manage/projects', displayValue: 'Zarządzaj projektami', roles: ['NGO_USER'] },
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

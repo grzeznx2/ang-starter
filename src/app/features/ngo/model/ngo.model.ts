@@ -12,7 +12,7 @@ export interface NGO {
   owners: User[];
   address: string;
   phone: string;
-  eMail: string;
+  email: string;
   website: string;
   socialLinks: string[];
   creationDate: string;
@@ -22,7 +22,8 @@ export interface NGO {
   NIP: string;
   resources: string[];
   legalStatus: LegalStatusNGO;
-  donors: Company[];
+  // donors: Company[];
   employees: User[];
   projects: Project[];
+  tags: string[];
 }

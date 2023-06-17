@@ -35,7 +35,5 @@ export class OffersApiService extends HttpBaseService {
 
   getAll(params: GetAllOffersParams = {}) {
     return this.http.get<Offer[]>(`${this.url}`);
-
-    // return of<Offer[]>([]).pipe(delay(500));
   }
 }

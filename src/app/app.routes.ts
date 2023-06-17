@@ -18,16 +18,20 @@ export const routes: Routes = [
         canMatch: [authGuard],
         children: [
           {
-            path: 'auctions',
-            loadComponent: () => import('./features/auctions/auctions.page.component'),
-          },
-          {
             path: 'ngos',
             loadComponent: () => import('./features/ngo/ngo-list.page.component'),
           },
           {
             path: 'manage/offers',
             loadComponent: () => import('./features/offers/manage-offers.page.component'),
+          },
+          {
+            path: 'manage/projects',
+            loadComponent: () => import('./features/projects/manage-projects.page.component'),
+          },
+          {
+            path: 'manage/projects/form',
+            loadComponent: () => import('./features/projects/project-form.page.component'),
           },
           {
             path: 'offers',
