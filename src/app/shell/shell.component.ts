@@ -40,7 +40,7 @@ export interface MenuItem {
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar color="primary">
+        <mat-toolbar>
           <button
             type="button"
             aria-label="Toggle sidenav"
@@ -50,9 +50,12 @@ export interface MenuItem {
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
           <div class="flex justify-between items-center w-full">
-            <div>
-              <mat-icon aria-label="Side nav toggle icon">waves</mat-icon>
-              <span>Kołobrzeg NGO</span>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <mat-icon aria-label="Side nav toggle icon">waves</mat-icon>
+                <span class="ml-2">Wavvy</span>
+              </div>
+              <span class="text-xs ml-2 text-blue-300">na fali pomocy</span>
             </div>
             <div class="flex justify-between items-center">
               <a routerLink="/messages" class="block"
@@ -70,6 +73,10 @@ export interface MenuItem {
   `,
   styles: [
     `
+      span.ml-2 {
+        letter-spacing: 5px;
+      }
+
       .sidenav-container {
         height: 100%;
       }
