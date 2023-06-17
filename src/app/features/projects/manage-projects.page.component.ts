@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,11 +11,12 @@ import { ProjectsApiService } from './data-access/projects.api.service';
 import { Project } from './model/project.model';
 import { ProjectsStateService } from './data-access/projects.state.service';
 import { Router } from '@angular/router';
+import { ProjectStatusPipe } from './utils/project-status.pipe';
 
 @Component({
   selector: 'app-manage-projects-page',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatDialogModule, NgIf, MatButtonModule],
+  imports: [MatTableModule, MatIconModule, MatDialogModule, NgIf, MatButtonModule, DatePipe, ProjectStatusPipe],
   template: `
     <header>
       <h2>Zarządzaj projektami</h2>
@@ -23,19 +24,44 @@ import { Router } from '@angular/router';
     <button mat-raised-button color="primary" (click)="goToProjectForm()">Dodaj</button>
 
     <table *ngIf="dataSource() as data" mat-table [dataSource]="data" class="mat-elevation-z8">
-      <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>Lp</th>
         <td mat-cell *matCellDef="let element">{{ element.position }}</td>
       </ng-container>
 
-      <!-- Name Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.status.name | projectStatus }}</td>
+      </ng-container>
+
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Opis</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="startTime">
+        <th mat-header-cell *matHeaderCellDef>Data rozpoczęcia</th>
+        <td mat-cell *matCellDef="let element">{{ element.startTime | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="endTime">
+        <th mat-header-cell *matHeaderCellDef>Data zakończenia</th>
+        <td mat-cell *matCellDef="let element">{{ element.endTime | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="budget">
+        <th mat-header-cell *matHeaderCellDef>Budżet (PLN)</th>
+        <td mat-cell *matCellDef="let element">{{ element.budget }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tags">
+        <th mat-header-cell *matHeaderCellDef>Tagi</th>
+        <td mat-cell *matCellDef="let element">{{ element.tags.join(', ') }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
@@ -55,7 +81,17 @@ export default class ManageProjectsPageComponent implements OnInit {
   private router = inject(Router);
   service = inject(ProjectsApiService);
   stateService = inject(ProjectsStateService);
-  displayedColumns: string[] = ['position', 'name', 'actions'];
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'description',
+    'startTime',
+    'endTime',
+    'budget',
+    'status',
+    'tags',
+    'actions',
+  ];
 
   dataSource = toSignal(
     this.stateService.value$.pipe(
