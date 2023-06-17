@@ -16,9 +16,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Oferty" [list]="state.list">
         <div #filters>filtry</div>
         <ng-template #item let-offer>
-          <div class="">
-            <div class="flex justify-between">
-              <p *ngIf="offer.closeDeadline"><mat-icon>warning</mat-icon> Wniosek zamyka się wkrótce</p>
+          <div class="relative">
+            <div class="flex justify-between items-center h-10">
+              <p *ngIf="offer.closeDeadline" class="text-red-600 font-bold">
+                <mat-icon>warning</mat-icon> Wniosek zamyka się wkrótce
+              </p>
               <mat-icon class="text-red-600 ml-auto">favorite</mat-icon>
             </div>
 
@@ -26,8 +28,32 @@ import { MatTooltipModule } from '@angular/material/tooltip';
               {{ offer.scope }}
             </div>
             <p class="font-semibold text-lg">{{ offer.name }}</p>
-            <p class="line-clamp-3">{{ offer.description }}</p>
-            <a [href]="offer.link" class="text-blue-600">Przejdź do szczegółów konkursu</a>
+            <p>{{ offer.description }}</p>
+            <mat-divider />
+            <div class="flex flex-col gap-4 my-3">
+              <div>
+                <strong class="block">Rozpoczęcie naboru wniosków: </strong>
+                <span>{{ offer.startDate | date }}</span>
+              </div>
+              <div>
+                <strong class="block">Zakończenie naboru wniosków: </strong>
+                <span>{{ offer.endDate | date }}</span>
+              </div>
+              <div class="flex gap-6">
+                <div>
+                  <strong class="block">Poziom finansowania: </strong>
+                  <span>{{ offer.fundingLevel }}%</span>
+                </div>
+                <div>
+                  <strong class="block">Budżet: </strong>
+                  <span>{{ offer.budget }} PLN</span>
+                </div>
+              </div>
+              <div>
+                <strong class="block">Grupa docelowa: </strong>
+                <span>{{ offer.targetAudience }}</span>
+              </div>
+            </div>
             <mat-divider />
             <div class="flex justify-end mt-4">
               <!-- <div class="flex flex-col"><mat-icon>paid</mat-icon> {{ project.budget }}</div>
@@ -41,9 +67,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
             </div>
           </div>
         </ng-template>
-        <!-- <ng-template #item let-offer>
-          <div>{{ offer.name }}</div>
-        </ng-template> -->
       </app-list-shell>
       <p *ngIf="state.loadListCallState === 'LOADING'">LOADING...</p>
     </ng-container>

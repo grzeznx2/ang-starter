@@ -27,15 +27,19 @@ import { AddOfferFormValue } from '../data-access/offers.api.service';
       <mat-form-field>
         <mat-label>Nazwa</mat-label>
         <input formControlName="name" matInput />
-        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <mat-hint>Dodaj nazwę</mat-hint>
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Opis</mat-label>
         <textarea formControlName="description" matInput></textarea>
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Dodaj opis</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Grupa docelowa</mat-label>
+        <textarea formControlName="targetAudience" matInput></textarea>
+        <mat-hint>Dodaj opis grupy docelowej</mat-hint>
       </mat-form-field>
       <br />
       <mat-form-field>
@@ -54,11 +58,22 @@ import { AddOfferFormValue } from '../data-access/offers.api.service';
         <mat-datepicker #datepicker2> </mat-datepicker>
       </mat-form-field>
       <br />
+      <div class="flex gap-4">
+        <mat-form-field>
+          <mat-label>Budżet (PLN)</mat-label>
+          <input formControlName="budget" matInput type="number" min="0" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Poziom finansowania (%)</mat-label>
+          <input formControlName="fundingLevel" matInput type="number" min="0" max="100" />
+        </mat-form-field>
+      </div>
+      <br />
 
       <mat-form-field>
         <mat-label>Link do BIP</mat-label>
         <input formControlName="link" matInput />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Dodaj</mat-hint>
       </mat-form-field>
       <br />
@@ -103,6 +118,9 @@ export class AddOfferFormComponent {
     description: FormControl<string>;
     startDate: FormControl<string>;
     endDate: FormControl<string>;
+    budget: FormControl<number>;
+    fundingLevel: FormControl<number>;
+    targetAudience: FormControl<string>;
     link: FormControl<string>;
     categories: FormControl<{ id: number; name: string }[]>;
   }>;
@@ -123,6 +141,9 @@ export class AddOfferFormComponent {
     this.form = this.builder.group({
       name: this.builder.control(this.formValue?.name || ''),
       description: this.builder.control(this.formValue?.description || ''),
+      targetAudience: this.builder.control(this.formValue?.targetAudience || ''),
+      budget: this.builder.control(this.formValue?.budget || 0),
+      fundingLevel: this.builder.control(this.formValue?.fundingLevel || 0),
       startDate: this.builder.control(this.formValue?.startDate || ''),
       endDate: this.builder.control(this.formValue?.endDate || ''),
       link: this.builder.control(this.formValue?.link || ''),
