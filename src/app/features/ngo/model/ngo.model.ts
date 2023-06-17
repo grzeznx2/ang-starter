@@ -6,7 +6,18 @@ export interface BusinessArea {
   id: number;
 }
 
-export type LegalStatusNGO = 'A' | 'B';
+export type LegalStatusNGO = 'FOUNDATION' | 'ASSOCIATION' | 'SOCIAL_COOPERATIVE' | 'PUBLIC_BENEFIT_ORGANIZATION';
+
+export type LegalStatusMap = {
+  [K in LegalStatusNGO]: string;
+};
+
+export const legalStatusMap: LegalStatusMap = {
+  FOUNDATION: 'Fundacja',
+  ASSOCIATION: 'Stowarzyszenie',
+  SOCIAL_COOPERATIVE: 'Spółdzielnia socjalna',
+  PUBLIC_BENEFIT_ORGANIZATION: 'Organizacja Pożytku Publicznego',
+};
 
 export interface NGO {
   id: string;

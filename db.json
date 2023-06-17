@@ -11,6 +11,30 @@
     {
       "id": 3,
       "name": "Edukacja i wychowanie"
+    },
+    {
+      "id": 4,
+      "name": "Promocja i ochrona praw zwierząt"
+    },
+    {
+      "id": 5,
+      "name": "Pomoc humanitarna i rozwój międzynarodowy"
+    },
+    {
+      "id": 6,
+      "name": "Wsparcie dla osób starszych"
+    },
+    {
+      "id": 7,
+      "name": "Rozwój społeczności lokalnych"
+    },
+    {
+      "id": 8,
+      "name": "Ochrona środowiska"
+    },
+    {
+      "id": 9,
+      "name": "Zdrowie i opieka społeczna"
     }
   ],
   "offers": [
@@ -77,21 +101,21 @@
       "website": "http://www.koty.com",
       "socialLinks": [],
       "creationDate": "21.03.2022",
-      "description": "Niesiemy pomoc kotkom",
+      "description": "Jesteśmy grupą miłośników kotów, którzy poświęcają swój czas, energię i zasoby na pomoc kotom w potrzebie. Nasza organizacja non-profit skupia się na ratowaniu bezdomnych i porzuconych kotów, dostarczając im schronienie, opiekę weterynaryjną i miłość, zanim znajdziemy dla nich kochające, stałe domy. Współpracujemy z lokalnymi weterynarzami, aby zapewnić, że każdy kot, który jest pod naszą opieką, otrzymuje najlepszą możliwą opiekę zdrowotną. Pracujemy także na rzecz edukacji społeczności na temat odpowiedzialnego posiadania zwierząt i znaczenia sterylizacji i kastracji w kontroli populacji kotów. Każdego dnia staramy się sprawić, aby świat był lepszym miejscem dla kotów.",
       "businnessAreas": [
         {
-          "id": 1,
-          "name": "Sport i zdrowie"
+          "id": 4,
+          "name": "Promocja i ochrona praw zwierząt"
         },
         {
-          "id": 2,
-          "name": "Kultura"
+          "id": 5,
+          "name": "Pomoc humanitarna i rozwój międzynarodowy"
         }
       ],
       "KRS": "1234",
       "NIP": "456456",
-      "resources": [],
-      "legalStatus": "",
+      "resources": ["Lwy i tygrysy"],
+      "legalStatus": "FOUNDATION",
       "donors": [],
       "employees": [],
       "projects": [],
@@ -99,7 +123,7 @@
     },
     {
       "id": "2",
-      "name": "Pomagamy psom",
+      "name": "Dom nadziei",
       "logo": "https://static.vecteezy.com/system/resources/previews/015/742/900/large_2x/stylized-ornamental-cat-portrait-design-for-embroidery-tattoo-t-shirt-mascot-logo-vector.jpg",
       "owners": [],
       "address": "Warszawska 22",
@@ -108,12 +132,68 @@
       "website": "http://www.psy.com",
       "socialLinks": [],
       "creationDate": "string",
-      "description": "Niesiemy pomoc psom",
-      "businnessAreas": [],
+      "description": "Jesteśmy organizacją non-profit 'Dom Nadziei', dedykowaną pomocy osobom bezdomnym. Nasza misja polega na zapewnianiu schronienia, żywności i podstawowej opieki zdrowotnej dla tych, którzy znaleźli się na ulicy. Pracujemy też nad długofalowymi rozwiązaniami, pomagając w znalezieniu zatrudnienia i stałego mieszkania. Wierzymy, że każda osoba zasługuje na godność i szacunek, dlatego każdego dnia podejmujemy starania, aby przynieść nadzieję i ulgę tym, którzy są najbardziej potrzebujący.",
+      "businnessAreas": [
+        {
+          "id": 6,
+          "name": "Wsparcie dla osób starszych"
+        },
+        {
+          "id": 7,
+          "name": "Rozwój społeczności lokalnych"
+        },
+        {
+          "id": 8,
+          "name": "Ochrona środowiska"
+        },
+        {
+          "id": 9,
+          "name": "Zdrowie i opieka społeczna"
+        }
+      ],
       "KRS": "1234",
       "NIP": "456456",
-      "resources": [],
-      "legalStatus": "",
+      "resources": ["Dom pełen nadziei"],
+      "legalStatus": "ASSOCIATION",
+      "donors": [],
+      "employees": [],
+      "projects": [],
+      "tags": []
+    },
+    {
+      "id": "3",
+      "name": "Aktywnie dla przyszłości",
+      "logo": "https://static.vecteezy.com/system/resources/previews/015/742/900/large_2x/stylized-ornamental-cat-portrait-design-for-embroidery-tattoo-t-shirt-mascot-logo-vector.jpg",
+      "owners": [],
+      "address": "Warszawska 22",
+      "phone": "700-697-383",
+      "email": "psy@gmail.com",
+      "website": "http://www.psy.com",
+      "socialLinks": [],
+      "creationDate": "string",
+      "description": "Aktywnie dla Przyszłości jest organizacją non-profit, która dąży do promowania zdrowego i aktywnego stylu życia wśród osób w każdym wieku. Wierzymy, że aktywność fizyczna i zdrowe nawyki mają kluczowe znaczenie dla poprawy jakości życia i zdrowia ogólnego. Nasza organizacja oferuje różnorodne programy, takie jak darmowe warsztaty fitness, szkolenia z żywienia, wydarzenia sportowe, biegi charytatywne i sesje edukacyjne dla szkół.",
+      "businnessAreas": [
+        {
+          "id": 6,
+          "name": "Wsparcie dla osób starszych"
+        },
+        {
+          "id": 7,
+          "name": "Rozwój społeczności lokalnych"
+        },
+        {
+          "id": 8,
+          "name": "Ochrona środowiska"
+        },
+        {
+          "id": 9,
+          "name": "Zdrowie i opieka społeczna"
+        }
+      ],
+      "KRS": "1234",
+      "NIP": "456456",
+      "resources": ["W pełni wyposażona sala gimnastyczna", "Zestaw dobrze utrzymanych rowerów elektrycznych"],
+      "legalStatus": "PUBLIC_BENEFIT_ORGANIZATION",
       "donors": [],
       "employees": [],
       "projects": [],
