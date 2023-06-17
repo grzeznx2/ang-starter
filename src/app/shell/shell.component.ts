@@ -8,7 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { HasRolePipe } from '../auth/utils/has-role.pipe';
+import { UserRoles } from '../core/user-roles.enum';
+
+export interface MenuItem {
+  link: string;
+  displayValue: string;
+  roles: UserRoles[];
+}
 
 @Component({
   selector: 'app-shell',
@@ -21,11 +29,11 @@ import { RouterOutlet } from '@angular/router';
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>Menu</mat-toolbar>
+        <mat-toolbar>{{ 'Menu' }}</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item href="#">Link 1</a>
-          <a mat-list-item href="#">Link 2</a>
-          <a mat-list-item href="#">Link 3</a>
+          <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">{{
+            menuItem.displayValue
+          }}</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -76,10 +84,16 @@ import { RouterOutlet } from '@angular/router';
     MatIconModule,
     CommonModule,
     RouterOutlet,
+    HasRolePipe,
+    RouterModule,
   ],
 })
 export default class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  menuItems: MenuItem[] = [
+    { link: '/auctions', displayValue: 'Aukcje', roles: ['ADMIN'] },
+    { link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN'] },
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
