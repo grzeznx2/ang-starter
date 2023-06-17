@@ -111,6 +111,11 @@ export default class ShellComponent {
       displayValue: 'Zarządzaj projektami',
       roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],
     },
+    {
+      link: '/manage/ngo-profile',
+      displayValue: 'Moja organizacja',
+      roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],
+    },
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

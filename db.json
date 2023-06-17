@@ -70,11 +70,11 @@
       "owners": [],
       "address": "Warszawska 20",
       "phone": "604-697-383",
-      "eMail": "koty@gmail.com",
+      "email": "koty@gmail.com",
       "website": "http://www.koty.com",
       "socialLinks": [],
-      "creationDate": "string",
-      "description": "Niesiemy pomoc kotom",
+      "creationDate": "21.03.2022",
+      "description": "Niesiemy pomoc kotkom",
       "businnesAreas": [],
       "KRS": "1234",
       "NIP": "456456",
@@ -82,7 +82,11 @@
       "legalStatus": "",
       "donors": [],
       "employees": [],
-      "projects": []
+      "projects": [],
+      "tags": [
+        "dzieci",
+        "zwierzęta"
+      ]
     },
     {
       "id": "2",
@@ -90,7 +94,7 @@
       "owners": [],
       "address": "Warszawska 22",
       "phone": "700-697-383",
-      "eMail": "psy@gmail.com",
+      "email": "psy@gmail.com",
       "website": "http://www.psy.com",
       "socialLinks": [],
       "creationDate": "string",
@@ -102,7 +106,8 @@
       "legalStatus": "",
       "donors": [],
       "employees": [],
-      "projects": []
+      "projects": [],
+      "tags": []
     }
   ],
   "projects": [
