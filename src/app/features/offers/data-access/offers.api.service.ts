@@ -21,9 +21,15 @@ export class OffersApiService extends HttpBaseService {
     return this.http.post<Offer>(`${this.API_URL}/offers`, payload);
   }
 
+  update(id: string, payload: AddOfferFormValue) {
+    return this.http.patch<Offer>(`${this.API_URL}/offers/${id}`, payload);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${this.API_URL}/offers/${id}`);
+  }
+
   getAll(params: GetAllOffersParams = {}) {
     return this.http.get<Offer[]>(`${this.API_URL}/offers`);
-
-    // return of<Offer[]>([]).pipe(delay(500));
   }
 }

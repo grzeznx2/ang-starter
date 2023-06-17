@@ -2,57 +2,27 @@ import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AddOfferFormComponent } from './ui/add-offer-form.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { AddOfferFormValue, OffersApiService } from './data-access/offers.api.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
-@Component({
-  template: `
-    <h1 mat-dialog-title>Usuwanie</h1>
-    <div mat-dialog-content>Czy na pewno chcesz usunąć? Nie możesz cofnąć tej czynności</div>
-    <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="false">Nie</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Tak</button>
-    </div>
-  `,
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-})
-export class RemoveDialogComponent {
-  dialogRef = inject<MatDialogRef<RemoveDialogComponent>>(MatDialogRef);
-}
+import { OffersApiService } from './data-access/offers.api.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CommonModule, NgIf } from '@angular/common';
+import { filter, map } from 'rxjs';
+import { Offer } from './model/offer.model';
+import { OfferFormDialogComponent } from './ui/offer-form-dialog.component';
+import { RemoveDialogComponent } from 'src/app/shared/ui/common-remove-dialog.component';
 
 @Component({
   selector: 'app-manage-offers-page',
   standalone: true,
-  imports: [MatTableModule, AddOfferFormComponent, MatIconModule, MatDialogModule],
+  imports: [MatTableModule, AddOfferFormComponent, MatIconModule, MatDialogModule, NgIf, MatButtonModule],
   template: `
     <header>
       <h2>Konkursy konkursiki</h2>
     </header>
-    <app-add-offer-form (add)="addOffer($event)" />
+    <button mat-raised-button color="primary" (click)="openOfferForm()">Dodaj</button>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table *ngIf="dataSource() as data" mat-table [dataSource]="data" class="mat-elevation-z8">
       <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -68,10 +38,10 @@ export class RemoveDialogComponent {
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="xd">
+      <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button (click)="edit(element)"><mat-icon>edit</mat-icon></button>
+          <button (click)="openOfferForm(element)"><mat-icon>edit</mat-icon></button>
           <button (click)="remove(element)"><mat-icon>delete</mat-icon></button>
         </td>
       </ng-container>
@@ -82,25 +52,50 @@ export class RemoveDialogComponent {
   `,
 })
 export default class ManageOffersPageComponent {
-  displayedColumns: string[] = ['position', 'name', 'xd'];
-  dataSource = ELEMENT_DATA;
+  service = inject(OffersApiService);
+  displayedColumns: string[] = ['position', 'name', 'actions'];
+
+  dataSource = toSignal(
+    this.service.getAll().pipe(
+      map(data =>
+        data.map((offer, index) => ({
+          position: index + 1,
+          ...offer,
+        }))
+      )
+    )
+  );
 
   dialog = inject(MatDialog);
 
-  service = inject(OffersApiService);
-
-  edit(el: PeriodicElement) {}
-
-  remove(el: PeriodicElement) {
+  remove(offer: Offer) {
     this.dialog
       .open(RemoveDialogComponent, {
         width: '250px',
       })
       .afterClosed()
-      .subscribe(console.log);
+      .pipe(filter(Boolean))
+      .subscribe(() => {
+        this.service.delete(offer.id).subscribe(console.log);
+      });
   }
 
-  addOffer(payload: AddOfferFormValue) {
-    this.service.add(payload).subscribe(console.log);
+  openOfferForm(offer?: Offer) {
+    this.dialog
+      .open(OfferFormDialogComponent, {
+        width: '500px',
+        data: {
+          offer: offer || null,
+        },
+      })
+      .afterClosed()
+      .pipe(filter(Boolean))
+      .subscribe(formValue => {
+        if (offer) {
+          this.service.update(offer.id, formValue).subscribe(console.log);
+        } else {
+          this.service.add(formValue).subscribe(console.log);
+        }
+      });
   }
 }

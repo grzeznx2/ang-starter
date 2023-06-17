@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AddOfferFormValue } from '../data-access/offers.api.service';
 
@@ -23,11 +23,11 @@ import { AddOfferFormValue } from '../data-access/offers.api.service';
     CommonModule,
   ],
   template: `
-    <form [formGroup]="form" (ngSubmit)="addOffer()">
+    <form [formGroup]="form" (ngSubmit)="addOffer()" class="flex flex-col">
       <mat-form-field>
         <mat-label>Nazwa</mat-label>
-        <textarea formControlName="name" matInput></textarea>
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input formControlName="name" matInput />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <mat-hint>Dodaj nazwę</mat-hint>
       </mat-form-field>
       <br />
@@ -48,7 +48,7 @@ import { AddOfferFormValue } from '../data-access/offers.api.service';
       <br />
       <mat-form-field>
         <mat-label>Data zakończenia naboru</mat-label>
-        <input matInput formControlName="startDate" [matDatepicker]="datepicker2" />
+        <input matInput formControlName="endDate" [matDatepicker]="datepicker2" />
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="datepicker2"></mat-datepicker-toggle>
         <mat-datepicker #datepicker2> </mat-datepicker>
@@ -72,11 +72,11 @@ import { AddOfferFormValue } from '../data-access/offers.api.service';
               {{ form.controls.categories.value.length === 2 ? 'other' : 'others' }})
             </span>
           </mat-select-trigger>
-          <mat-option *ngFor="let topping of categoryList" [value]="topping">{{ topping.name }}</mat-option>
+          <mat-option *ngFor="let category of categoryList" [value]="category">{{ category.name }}</mat-option>
         </mat-select>
       </mat-form-field>
       <br />
-      <button mat-raised-button color="primary">dodaj</button>
+      <button mat-raised-button color="primary">Zapisz</button>
     </form>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -98,16 +98,37 @@ export class AddOfferFormComponent {
     },
   ];
 
-  form = this.builder.group({
-    name: this.builder.control(this.formValue?.name || ''),
-    description: this.builder.control(this.formValue?.description || ''),
-    startDate: this.builder.control(this.formValue?.startDate || ''),
-    endDate: this.builder.control(this.formValue?.endDate || ''),
-    link: this.builder.control(this.formValue?.link || ''),
-    categories: this.builder.control<{ id: number; name: string }[]>(this.formValue?.categories || []),
-  });
+  form!: FormGroup<{
+    name: FormControl<string>;
+    description: FormControl<string>;
+    startDate: FormControl<string>;
+    endDate: FormControl<string>;
+    link: FormControl<string>;
+    categories: FormControl<{ id: number; name: string }[]>;
+  }>;
 
   addOffer() {
     this.add.emit(this.form.getRawValue());
+  }
+
+  ngOnInit() {
+    let preselectedCategories: { id: number; name: string }[] = [];
+
+    if (this.formValue) {
+      preselectedCategories = this.categoryList.filter(cat =>
+        this.formValue?.categories.some(({ id }) => id === cat.id)
+      );
+    }
+
+    this.form = this.builder.group({
+      name: this.builder.control(this.formValue?.name || ''),
+      description: this.builder.control(this.formValue?.description || ''),
+      startDate: this.builder.control(this.formValue?.startDate || ''),
+      endDate: this.builder.control(this.formValue?.endDate || ''),
+      link: this.builder.control(this.formValue?.link || ''),
+      categories: this.builder.control<{ id: number; name: string }[]>(preselectedCategories),
+    });
+
+    console.log(this.form.value);
   }
 }
