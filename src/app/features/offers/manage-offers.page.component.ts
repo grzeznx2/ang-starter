@@ -126,7 +126,7 @@ export default class ManageOffersPageComponent implements OnInit {
       .afterClosed()
       .pipe(filter(Boolean))
       .subscribe(() => {
-        this.service.delete(offer.id).subscribe(console.log);
+        this.service.delete(offer.id);
       });
   }
 
@@ -142,9 +142,9 @@ export default class ManageOffersPageComponent implements OnInit {
       .pipe(filter(Boolean))
       .subscribe(formValue => {
         if (offer) {
-          this.service.update(offer.id, formValue).subscribe(console.log);
+          this.service.update(offer.id, formValue);
         } else {
-          this.service.add(formValue).subscribe(console.log);
+          this.service.add(formValue);
         }
       });
   }

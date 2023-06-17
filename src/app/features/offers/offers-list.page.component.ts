@@ -56,13 +56,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
             </div>
             <mat-divider />
             <div class="flex justify-end mt-4">
-              <!-- <div class="flex flex-col"><mat-icon>paid</mat-icon> {{ project.budget }}</div>
-              <div *ngIf="project.possibleVolunteer" class="flex flex-col">
-                <mat-icon>accessibility new</mat-icon>
-              </div>
-              <div *ngIf="project.cooperationMessage" class="flex flex-col">
-                <mat-icon [matTooltip]="project.cooperationMessage">spatial_audio_off</mat-icon>
-              </div> -->
               <div class="flex flex-col"><mat-icon>forward_to_inbox</mat-icon></div>
             </div>
           </div>

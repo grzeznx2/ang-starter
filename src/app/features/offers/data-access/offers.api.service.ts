@@ -29,15 +29,36 @@ export class OffersApiService extends HttpBaseService {
   }
 
   add(payload: AddOfferFormValue) {
-    return this.http.post<Offer>(`${this.url}`, payload);
+    this.http
+      .post<Offer>(`${this.url}`, payload)
+      .pipe(
+        tap(() => {
+          this.getAll();
+        })
+      )
+      .subscribe();
   }
 
   update(id: string, payload: AddOfferFormValue) {
-    return this.http.patch<Offer>(`${this.url}/${id}`, payload);
+    this.http
+      .patch<Offer>(`${this.url}/${id}`, payload)
+      .pipe(
+        tap(() => {
+          this.getAll();
+        })
+      )
+      .subscribe();
   }
 
   delete(id: string) {
-    return this.http.delete(`${this.url}/${id}`);
+    this.http
+      .delete(`${this.url}/${id}`)
+      .pipe(
+        tap(() => {
+          this.getAll();
+        })
+      )
+      .subscribe();
   }
 
   getAll(params: GetAllOffersParams = {}) {
