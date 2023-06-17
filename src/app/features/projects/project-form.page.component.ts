@@ -133,7 +133,7 @@ export default class ProjectFormPageComponent implements OnInit {
   projectStatuses = [
     {
       id: 1,
-      name: PROJECT_STATUS.IN_PREPARATION,
+      name: PROJECT_STATUS.IDEA,
     },
     {
       id: 2,
@@ -147,7 +147,7 @@ export default class ProjectFormPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.builder.group({
-      status: this.builder.control<ProjectStatus>(this.project?.status || PROJECT_STATUS.IN_PREPARATION),
+      status: this.builder.control<ProjectStatus>(this.project?.status || PROJECT_STATUS.IDEA),
       tags: this.builder.array<FormControl<string>>([]),
       name: this.builder.control(this.project?.name || ''),
       description: this.builder.control(this.project?.description || ''),
