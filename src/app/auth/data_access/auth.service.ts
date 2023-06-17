@@ -8,7 +8,6 @@ import { UserRoles } from 'src/app/core/user-roles.enum';
 export interface LoginFormValue {
   login: string;
   password: string;
-  role: UserRoles;
 }
 
 @Injectable({
@@ -20,7 +19,7 @@ export class AuthService extends HttpBaseService {
 
   login(loginFormValue: LoginFormValue) {
     this.http
-      .get<User[]>(`http://localhost:3000/users?role=${loginFormValue.role}`)
+      .get<User[]>(`http://localhost:3000/users?role=${loginFormValue.login}`)
       .pipe(tap(this.setAuthenticatedUser))
       .subscribe();
   }
