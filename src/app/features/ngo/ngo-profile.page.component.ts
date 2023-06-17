@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { NGOsApiService } from './data-access/ngos.api.service';
@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { tap } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
-import { NGO } from './model/ngo.model';
+import { BusinessArea, NGO } from './model/ngo.model';
 
 @Component({
   selector: 'app-ngo-list-page',
@@ -30,6 +30,9 @@ import { NGO } from './model/ngo.model';
     <ng-container *ngIf="state() as state">
       <section *ngIf="state.loadProfileCallState === 'LOADED'">
         <h2>{{ state.profile?.name }}</h2>
+        <div class="w-1/5 mb-4">
+          <img [src]="state.profile?.logo" />
+        </div>
         <form [formGroup]="form" (ngSubmit)="save()">
           <div class="flex gap-4">
             <mat-form-field class="w-1/2">
@@ -81,6 +84,28 @@ import { NGO } from './model/ngo.model';
             <br />
           </div>
           <div class="flex gap-4">
+            <mat-form-field class="w-1/2">
+              <mat-label>Kategorie</mat-label>
+              <mat-select formControlName="businnessAreas" multiple>
+                <mat-select-trigger>
+                  {{ form.controls.businnessAreas.value[0]?.name || '' }}
+                  <span *ngIf="(form.controls.businnessAreas.value.length || 0) > 1">
+                    (+{{ (form.controls.businnessAreas.value.length || 0) - 1 }}
+                    {{ form.controls.businnessAreas.value.length === 2 ? 'other' : 'others' }})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let area of bussinessAreas" [value]="area">{{ area.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field class="w-1/2">
+              <mat-label>Logo</mat-label>
+              <input formControlName="logo" matInput />
+            </mat-form-field>
+            <br />
+          </div>
+          <div class="flex gap-4">
             <mat-form-field class="w-1/2 pr-2">
               <mat-label>Tagi</mat-label>
               <mat-chip-grid formControlName="tags" #chipGrid aria-label="Enter tags">
@@ -122,6 +147,7 @@ import { NGO } from './model/ngo.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class NgoProfilePageComponent implements OnInit {
+  @Input() bussinessAreas!: BusinessArea[];
   private builder = inject(NonNullableFormBuilder);
   private service = inject(NGOsApiService);
   state = inject(NGOsStateService).$value;
@@ -130,7 +156,20 @@ export default class NgoProfilePageComponent implements OnInit {
       tap(({ profile }) => {
         if (!profile) return;
         this.ngoProfile = profile;
-        const { name, address, description, email, website, phone, tags, creationDate, KRS, NIP } = profile;
+        const {
+          name,
+          address,
+          description,
+          email,
+          website,
+          phone,
+          tags,
+          creationDate,
+          KRS,
+          NIP,
+          businnessAreas,
+          logo,
+        } = profile;
         this.form.patchValue({
           name,
           address,
@@ -142,7 +181,10 @@ export default class NgoProfilePageComponent implements OnInit {
           NIP,
           tags,
           creationDate,
+          businnessAreas,
+          logo,
         });
+
         this.tags = tags;
       })
     )
@@ -154,6 +196,7 @@ export default class NgoProfilePageComponent implements OnInit {
 
   form = this.builder.group({
     name: this.builder.control(''),
+    logo: this.builder.control(''),
     KRS: this.builder.control(''),
     NIP: this.builder.control(''),
     description: this.builder.control(''),
@@ -163,6 +206,7 @@ export default class NgoProfilePageComponent implements OnInit {
     phone: this.builder.control(''),
     tags: this.builder.control(['']),
     creationDate: this.builder.control(''),
+    businnessAreas: this.builder.control<{ id: number; name: string }[]>([]),
   });
 
   tags: string[] = [];

@@ -8,7 +8,9 @@ export interface GetAllNGOsParams {}
 
 export interface AddNGOFormValue {}
 
-export type UpdateNGOProfileFormValue = Partial<Pick<NGO, 'address' | 'description' | 'email' | 'phone' | 'tags'>>;
+export type UpdateNGOProfileFormValue = Partial<
+  Pick<NGO, 'address' | 'description' | 'email' | 'phone' | 'tags' | 'businnessAreas' | 'logo'>
+>;
 
 @Injectable({
   providedIn: 'root',

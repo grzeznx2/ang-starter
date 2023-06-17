@@ -67,6 +67,7 @@
     {
       "id": "1",
       "name": "Pomagamy kotom",
+      "logo": "https://static.vecteezy.com/system/resources/previews/015/742/900/large_2x/stylized-ornamental-cat-portrait-design-for-embroidery-tattoo-t-shirt-mascot-logo-vector.jpg",
       "owners": [],
       "address": "Warszawska 20",
       "phone": "604-697-383",
@@ -75,7 +76,16 @@
       "socialLinks": [],
       "creationDate": "21.03.2022",
       "description": "Niesiemy pomoc kotkom",
-      "businnesAreas": [],
+      "businnessAreas": [
+        {
+          "id": 1,
+          "name": "Sport i zdrowie"
+        },
+        {
+          "id": 2,
+          "name": "Kultura"
+        }
+      ],
       "KRS": "1234",
       "NIP": "456456",
       "resources": [],
@@ -91,6 +101,7 @@
     {
       "id": "2",
       "name": "Pomagamy psom",
+      "logo": "https://static.vecteezy.com/system/resources/previews/015/742/900/large_2x/stylized-ornamental-cat-portrait-design-for-embroidery-tattoo-t-shirt-mascot-logo-vector.jpg",
       "owners": [],
       "address": "Warszawska 22",
       "phone": "700-697-383",
@@ -99,7 +110,7 @@
       "socialLinks": [],
       "creationDate": "string",
       "description": "Niesiemy pomoc psom",
-      "businnesAreas": [],
+      "businnessAreas": [],
       "KRS": "1234",
       "NIP": "456456",
       "resources": [],
