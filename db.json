@@ -48,5 +48,47 @@
       "id": 5,
       "role": "CITIZEN"
     }
+  ],
+  "ngos": [
+    {
+      "id": "1",
+      "name": "Pomagamy kotom",
+      "owners": [],
+      "address": "Warszawska 20",
+      "phone": "604-697-383",
+      "eMail": "koty@gmail.com",
+      "website": "http://www.koty.com",
+      "socialLinks": [],
+      "creationDate": "string",
+      "description": "Niesiemy pomoc kotom",
+      "businnesAreas": [],
+      "KRS": "1234",
+      "NIP": "456456",
+      "resources": [],
+      "legalStatus": "",
+      "donors": [],
+      "employees": [],
+      "projects": []
+    },
+    {
+      "id": "2",
+      "name": "Pomagamy psom",
+      "owners": [],
+      "address": "Warszawska 22",
+      "phone": "700-697-383",
+      "eMail": "psy@gmail.com",
+      "website": "http://www.psy.com",
+      "socialLinks": [],
+      "creationDate": "string",
+      "description": "Niesiemy pomoc psom",
+      "businnesAreas": [],
+      "KRS": "1234",
+      "NIP": "456456",
+      "resources": [],
+      "legalStatus": "",
+      "donors": [],
+      "employees": [],
+      "projects": []
+    }
   ]
 }
