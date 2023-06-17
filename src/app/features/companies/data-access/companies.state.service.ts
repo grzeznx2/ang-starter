@@ -1,15 +1,14 @@
 import { Injectable, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { NGO } from '../model/ngo.model';
 import { CallState } from 'src/app/core/call-state.enum';
+import { Company } from '../model/company.model';
 import { StateService } from 'src/app/core/state.service';
 
-export interface NGOsStateValue {
-  list: NGO[];
+export interface CompaniesStateValue {
+  list: Company[];
   loadListCallState: CallState;
 }
 
-const initialState: NGOsStateValue = {
+const initialState: CompaniesStateValue = {
   list: [],
   loadListCallState: 'INITIAL',
 };
@@ -17,7 +16,7 @@ const initialState: NGOsStateValue = {
 @Injectable({
   providedIn: 'root',
 })
-export class NGOsStateService extends StateService<NGOsStateValue> {
+export class CompaniesStateService extends StateService<CompaniesStateValue> {
   constructor() {
     super(initialState);
   }

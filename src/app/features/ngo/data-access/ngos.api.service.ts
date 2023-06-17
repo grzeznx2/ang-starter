@@ -6,20 +6,13 @@ import { tap } from 'rxjs';
 
 export interface GetAllNGOsParams {}
 
-export interface AddNGOFormValue {
-  name: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  link: string;
-  categories: { id: number; name: string }[];
-}
+export interface AddNGOFormValue {}
 
 @Injectable({
   providedIn: 'root',
 })
 export class NGOsApiService extends HttpBaseService {
-  private ngosStateService = inject(NGOsStateService);
+  private stateService = inject(NGOsStateService);
 
   constructor() {
     super('ngos');
@@ -30,13 +23,13 @@ export class NGOsApiService extends HttpBaseService {
   }
 
   getAll(params: GetAllNGOsParams = {}) {
-    this.ngosStateService.setState({ loadListCallState: 'LOADING' });
+    this.stateService.setState({ loadListCallState: 'LOADING' });
 
     return this.http
       .get<NGO[]>(`${this.url}`)
       .pipe(
         tap(ngos => {
-          this.ngosStateService.setState({ loadListCallState: 'LOADED', list: ngos });
+          this.stateService.setState({ loadListCallState: 'LOADED', list: ngos });
         })
       )
       .subscribe();

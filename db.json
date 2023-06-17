@@ -16,7 +16,7 @@
       "id": 1
     },
     {
-      "name": "",
+      "name": "Przetarg na konie",
       "description": "",
       "startDate": "",
       "endDate": "",
@@ -91,5 +91,15 @@
       "employees": [],
       "projects": []
     }
+  ],
+  "projects": [
+    {"id": 1, "name": "Dofinansowanie kopalni"},
+    {"id": 2, "name": "Zakup paszy dla ryb"},
+    {"id": 3, "name": "Inwestowanie w bursztyn"}
+  ],
+  "companies": [
+    {"id": 1, "name": "Piraci z Karaibów"},
+    {"id": 2, "name": "Natura 2030"},
+    {"id": 3, "name": "Nadmorski przygody"}
   ]
 }

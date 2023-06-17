@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpBaseService } from 'src/app/core/http-base.abstract.service';
 import { Offer } from '../model/offer.model';
+import { OffersStateService } from './offers.state.service';
+import { tap } from 'rxjs';
 
 export interface GetAllOffersParams {}
 
@@ -17,6 +19,8 @@ export interface AddOfferFormValue {
   providedIn: 'root',
 })
 export class OffersApiService extends HttpBaseService {
+  private stateService = inject(OffersStateService);
+
   constructor() {
     super('offers');
   }
@@ -34,6 +38,15 @@ export class OffersApiService extends HttpBaseService {
   }
 
   getAll(params: GetAllOffersParams = {}) {
-    return this.http.get<Offer[]>(`${this.url}`);
+    this.stateService.setState({ loadListCallState: 'LOADING' });
+
+    return this.http
+      .get<Offer[]>(`${this.url}`)
+      .pipe(
+        tap(offers => {
+          this.stateService.setState({ loadListCallState: 'LOADED', list: offers });
+        })
+      )
+      .subscribe();
   }
 }

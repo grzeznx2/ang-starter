@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpBaseService } from 'src/app/core/http-base.abstract.service';
+import { Injectable, inject } from '@angular/core';
+import { ProjectsStateService } from './projects.state.service';
+import { tap } from 'rxjs';
 import { Project } from '../model/project.model';
 
 export interface GetAllProjectsParams {}
@@ -17,6 +19,8 @@ export interface AddProjectFormValue {
   providedIn: 'root',
 })
 export class ProjectsApiService extends HttpBaseService {
+  private stateService = inject(ProjectsStateService);
+
   constructor() {
     super('projects');
   }
@@ -34,6 +38,15 @@ export class ProjectsApiService extends HttpBaseService {
   }
 
   getAll(params: GetAllProjectsParams = {}) {
-    return this.http.get<Project[]>(`${this.url}`);
+    this.stateService.setState({ loadListCallState: 'LOADING' });
+
+    return this.http
+      .get<Project[]>(`${this.url}`)
+      .pipe(
+        tap(Projects => {
+          this.stateService.setState({ loadListCallState: 'LOADED', list: Projects });
+        })
+      )
+      .subscribe();
   }
 }
