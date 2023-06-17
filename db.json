@@ -188,5 +188,16 @@
       "id": 3,
       "name": "Nadmorski przygody"
     }
+  ],
+  "messages": [
+    {
+      "title": "Propozycja współpracy",
+      "content": "Dzień dobry, jestem zainteresowany propozycją współpracy, proszę o kontakt. Pozdrawiam!",
+      "receiverId": 2,
+      "receiverType": "ngo",
+      "senderId": 1,
+      "createdAt": 1687013971421,
+      "id": 1
+    }
   ]
 }

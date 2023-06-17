@@ -6,11 +6,24 @@ import { ListShellComponent } from 'src/app/shared/ui/list-shell.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/ui/common-message-dialog.component';
+import { tap, take } from 'rxjs';
+import { MessagesApiService } from '../messages/data-access/messages.api.service';
+import { MatSnackBar, MatSnackBarRef, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-projects.page',
   standalone: true,
-  imports: [CommonModule, ListShellComponent, MatIconModule, MatTooltipModule, MatDividerModule],
+  imports: [
+    CommonModule,
+    ListShellComponent,
+    MatIconModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatDialogModule,
+    MatSnackBarModule,
+  ],
   template: `
     <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Projekty" [list]="state.list">
@@ -37,7 +50,9 @@ import { MatDividerModule } from '@angular/material/divider';
               <div *ngIf="project.cooperationMessage" class="flex flex-col">
                 <mat-icon [matTooltip]="project.cooperationMessage">spatial_audio_off</mat-icon>
               </div>
-              <div class="flex flex-col"><mat-icon>forward_to_inbox</mat-icon></div>
+              <div class="flex flex-col" (click)="openMessageModal(project.id, project.name)">
+                <mat-icon>forward_to_inbox</mat-icon>
+              </div>
             </div>
           </div>
         </ng-template>
@@ -52,10 +67,37 @@ import { MatDividerModule } from '@angular/material/divider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ProjectsListPageComponent implements OnInit {
+  snackbar = inject(MatSnackBar);
   service = inject(ProjectsApiService);
+  messagesService = inject(MessagesApiService);
   state = inject(ProjectsStateService).$value;
+  dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.service.getAll();
+  }
+
+  openMessageModal(id: string, name: string) {
+    this.dialog
+      .open(MessageDialogComponent, {
+        width: '500px',
+        data: {
+          name,
+          connector: 'odnośnie projektu',
+        },
+      })
+      .afterClosed()
+      .pipe(
+        tap((value: MessageDialogFormValue) => {
+          this.snackbar.open('Wiadomość została wysłana!', '', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+          });
+          this.messagesService.send({ ...value, receiverId: id, receiverType: 'ngo' });
+        }),
+        take(1)
+      )
+      .subscribe();
   }
 }
