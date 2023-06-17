@@ -90,5 +90,10 @@
       "employees": [],
       "projects": []
     }
+  ],
+  "projects": [
+    {"id": 1, "name": "Dofinansowanie kopalni"},
+    {"id": 2, "name": "Zakup paszy dla ryb"},
+    {"id": 3, "name": "Inwestowanie w bursztyn"}
   ]
 }

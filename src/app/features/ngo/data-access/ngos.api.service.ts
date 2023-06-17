@@ -6,14 +6,7 @@ import { tap } from 'rxjs';
 
 export interface GetAllNGOsParams {}
 
-export interface AddNGOFormValue {
-  name: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  link: string;
-  categories: { id: number; name: string }[];
-}
+export interface AddNGOFormValue {}
 
 @Injectable({
   providedIn: 'root',
