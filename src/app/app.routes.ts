@@ -70,6 +70,10 @@ export const routes: Routes = [
             loadComponent: () => import('./features/offers/offers-list.page.component'),
           },
           {
+            path: 'messages',
+            loadComponent: () => import('./features/messages/messages-list.page.component'),
+          },
+          {
             path: 'companies',
             loadComponent: () => import('./features/companies/companies-list.page.component'),
           },
