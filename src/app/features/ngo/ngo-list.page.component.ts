@@ -10,7 +10,6 @@ import { MessagesApiService } from '../messages/data-access/messages.api.service
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/ui/common-message-dialog.component';
 import { take, tap } from 'rxjs';
-import { NGOResourcesDialogComponent } from './ngo-resources-dialog.component';
 import { NGOContactDialogComponent } from './ngo-contact-dialog.component';
 import { ListDialogComponent } from 'src/app/shared/ui/common-list-dialog.component';
 import { LegalStatusPipe } from './utils/legal-status.pipe';
@@ -33,14 +32,16 @@ import { LegalStatusPipe } from './utils/legal-status.pipe';
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Ngo's" [list]="state.list">
         <div #filters>filtry</div>
         <ng-template #item let-ngo>
-          <div class="mb-4">
+          <div class="mb-4 h-10">
             <p class="font-semibold text-lg">{{ ngo.name }}</p>
           </div>
-          <div class="mb-4 relative">
+          <div class="mb-4 relative h-80">
             <div class="absolute right-0 top-0 w-8 h-8 m-2 cursor-pointer">
               <img src="assets/images/blik-logo.jpeg" alt="My Image" />
             </div>
-            <img [src]="ngo.logo" />
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <img [src]="ngo.logo" />
+            </div>
             <div class="absolute bottom-0 left-0 w-full h-10 p-4 bg-green-500 text-white flex items-center">
               {{ ngo.legalStatus | legalStatus }}
             </div>
@@ -88,7 +89,7 @@ export default class NgoListPageComponent implements OnInit {
         width: '500px',
         data: {
           name,
-          connector: 'odnośnie organizacji:',
+          connector: 'do organizacji:',
         },
       })
       .afterClosed()
@@ -113,7 +114,7 @@ export default class NgoListPageComponent implements OnInit {
       width: '450px',
       data: {
         items,
-        title: 'Zasoby orgranizacji',
+        title: 'Zasoby organizacji',
       },
     });
   }
@@ -130,7 +131,7 @@ export default class NgoListPageComponent implements OnInit {
 
   openContactModal(address: string, phone: string, email: string, website: string) {
     this.dialog.open(NGOContactDialogComponent, {
-      width: '450px',
+      width: '650px',
       data: {
         address,
         phone,
