@@ -30,7 +30,7 @@ export interface MenuItem {
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>{{ 'Menu' }}</mat-toolbar>
+        <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
           <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">{{
             menuItem.displayValue
