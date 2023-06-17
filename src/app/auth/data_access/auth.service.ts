@@ -1,12 +1,14 @@
 import { Injectable, inject } from '@angular/core';
-import { AuthStatus } from '../utils/auth-status.enum';
 import { HttpBaseService } from 'src/app/core/http-base.abstract.service';
 import { AuthStateService, User } from './auth.state.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserRoles } from 'src/app/core/user-roles.enum';
 
-export interface AuthStateValue {
-  status: AuthStatus;
+export interface LoginFormValue {
+  login: string;
+  password: string;
+  role: UserRoles;
 }
 
 @Injectable({
@@ -16,10 +18,11 @@ export class AuthService extends HttpBaseService {
   router = inject(Router);
   authStateService = inject(AuthStateService);
 
-  login() {
-    // TODO: get role as argument
-    const role = 'ADMIN';
-    this.http.get<User[]>(`http://localhost:3000/users?role=${role}`).pipe(tap(this.setAuthenticatedUser)).subscribe();
+  login(loginFormValue: LoginFormValue) {
+    this.http
+      .get<User[]>(`http://localhost:3000/users?role=${loginFormValue.role}`)
+      .pipe(tap(this.setAuthenticatedUser))
+      .subscribe();
   }
 
   private setAuthenticatedUser = (users: User[]) => {
