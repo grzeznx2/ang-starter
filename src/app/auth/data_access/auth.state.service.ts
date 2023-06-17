@@ -1,9 +1,16 @@
 import { Injectable, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AuthStatus } from '../utils/auth-status.enum';
+import { UserRoles } from 'src/app/core/user-roles.enum';
+
+export interface User {
+  id: number;
+  role: UserRoles;
+}
 
 export interface AuthStateValue {
   status: AuthStatus;
+  user: User | null;
 }
 
 @Injectable({
@@ -11,7 +18,8 @@ export interface AuthStateValue {
 })
 export class AuthStateService {
   private $state = signal<AuthStateValue>({
-    status: 'AUTHENTICATED',
+    status: 'NON_AUTHENTICATED',
+    user: null,
   });
 
   get $value() {

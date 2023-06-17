@@ -7,3 +7,7 @@ export const USER_ROLES = {
 } as const;
 
 export type UserRoles = keyof typeof USER_ROLES;
+
+export interface WithUserRoles {
+  roles: UserRoles[];
+}
