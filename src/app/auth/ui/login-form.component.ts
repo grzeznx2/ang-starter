@@ -12,18 +12,16 @@ import { LoginFormValue } from '../data_access/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, CommonModule],
   template: `
-    <form [formGroup]="form" (ngSubmit)="emitLogin()">
-      <mat-form-field>
+    <form [formGroup]="form" (ngSubmit)="emitLogin()" class="w-80">
+      <mat-form-field class="w-full">
         <mat-label>Login</mat-label>
         <input formControlName="login" matInput />
       </mat-form-field>
       <br />
-      <mat-form-field>
+      <mat-form-field class="w-full">
         <mat-label>Hasło</mat-label>
         <input formControlName="password" matInput type="password" />
       </mat-form-field>
-      <br />
-
       <br />
       <div class="flex justify-center">
         <button mat-raised-button color="primary">Zaloguj</button>
