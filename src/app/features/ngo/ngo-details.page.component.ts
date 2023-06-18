@@ -13,6 +13,7 @@ import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/u
 import { take, tap } from 'rxjs';
 import { ProjectsApiService } from '../projects/data-access/projects.api.service';
 import { ProjectsStateService } from '../projects/data-access/projects.state.service';
+import ProjectsListComponent from '../projects/projects-list.component';
 
 @Component({
   selector: 'app-ngo-details-page',
@@ -25,6 +26,7 @@ import { ProjectsStateService } from '../projects/data-access/projects.state.ser
     MatDialogModule,
     MatSnackBarModule,
     MatDividerModule,
+    ProjectsListComponent,
   ],
   template: `
     <ng-container *ngIf="state() as state">
@@ -98,6 +100,11 @@ import { ProjectsStateService } from '../projects/data-access/projects.state.ser
         </section>
       </div>
       <p *ngIf="state.loadListCallState === 'LOADING'">LOADING...</p>
+      <div *ngIf="projectsState() as state" class="mt-8">
+        <app-projects-list *ngIf="state.loadListByNGOIdCallState === 'LOADED'" [projects]="state.listByNGOId" />
+
+        <p *ngIf="state.loadListCallState === 'LOADING'">LOADING...</p>
+      </div>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

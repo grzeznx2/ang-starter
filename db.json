@@ -308,7 +308,70 @@
       "categories": [],
       "cooperationMessage": "Szukamy historyków, weteranów i innych osób, które chciałyby podzielić się swoją wiedzą i doświadczeniami podczas naszego wydarzenia!",
       "id": 12
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "IDEA"
+      },
+      "tags": ["edukacja", "młodzież", "rozwój"],
+      "ngo": "ZHP Bałtycki Hufiec Morski w Kołobrzegu",
+      "ngoId": "2",
+      "name": "Letni obóz harcerski",
+      "imageLink": "https://images.unsplash.com/photo-1525740353756-92f4fbde1625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      "description": "Organizujemy letni obóz harcerski, który stwarza warunki do wszechstronnego rozwoju młodzieży, rozwijając zarówno ich umiejętności społeczne, jak i fizyczne.",
+      "startTime": "2023-07-01T23:00:00.000Z",
+      "endTime": "2023-08-01T24:00:00.000Z",
+      "link": "https://www.facebook.com/zhpkolobrzeg/?locale=pl_PL",
+      "possibleVolunteer": true,
+      "budget": "40000",
+      "categories": [],
+      "cooperationMessage": "Szukamy wolontariuszy, którzy pomogą nam w organizacji obozu!",
+      "id": 13
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "PLANNED"
+      },
+      "tags": ["rozwoj osobisty", "wychowanie", "dzieci i młodzież"],
+      "ngo": "ZHP Bałtycki Hufiec Morski w Kołobrzegu",
+      "ngoId": "2",
+      "name": "Program przeciwdziałania nałogom",
+      "imageLink": "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      "description": "Inicjatywa mająca na celu edukację młodzieży o zagrożeniach związanych z nałogami oraz kształtowanie postaw odporności na presję rówieśniczą.",
+      "startTime": "2023-09-01T23:00:00.000Z",
+      "endTime": "2024-06-30T24:00:00.000Z",
+      "link": "https://www.facebook.com/zhpkolobrzeg/?locale=pl_PL",
+      "possibleVolunteer": true,
+      "budget": "20000",
+      "categories": [],
+      "cooperationMessage": "Szukamy specjalistów od profilaktyki uzależnień, którzy chcieliby podzielić się swoją wiedzą z naszymi harcerzami!",
+      "id": 14
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "OBTAINING_FINANCING"
+      },
+      "tags": ["sport", "edukacja", "młodzież", "rozwój"],
+      "ngo": "Kołobrzeski Międzyszkolny Klub Lekkoatletyczny 'Sztorm'",
+      "ngoId":"3",
+      "name": "Lekkoatletyczne warsztaty weekendowe",
+      "imageLink": "https://images.unsplash.com/photo-1534185372994-55f9e64235c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      "description": "Organizujemy weekendowe warsztaty lekkoatletyczne dla uczniów, które pomogą im rozwinąć ich umiejętności i zainteresowania sportowe.",
+      "startTime": "2023-07-08T23:00:00.000Z",
+      "endTime": "2023-07-09T24:00:00.000Z",
+      "link": "https://powiat.kolobrzeg.pl/opis-289-uczniowski_klub_sportowy_osemka.html",
+      "possibleVolunteer": true,
+      "budget": "5000",
+      "categories": [],
+      "cooperationMessage": "Szukamy trenerów lekkoatletyki i wolontariuszy do pomocy w organizacji warsztatów!",
+      "id": 15
     }
+
+
+
 
 
 
