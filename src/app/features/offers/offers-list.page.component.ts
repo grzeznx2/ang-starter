@@ -14,18 +14,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   template: `
     <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Oferty" [list]="state.list">
-        <div #filters>filtry</div>
         <ng-template #item let-offer>
           <div class="relative">
             <div class="flex justify-between items-center h-10">
-              <p *ngIf="offer.closeDeadline" class="text-red-600 font-bold">
-                <mat-icon>warning</mat-icon> Wniosek zamyka się wkrótce
-              </p>
+              <div *ngIf="offer.closeDeadline" class="text-red-600 font-bold flex items-center">
+                <mat-icon class="mr-2">warning</mat-icon> <span>Wniosek zamyka się wkrótce</span>
+              </div>
               <mat-icon class="text-red-600 ml-auto">favorite</mat-icon>
             </div>
 
             <div class="rounded-md w-fit px-2 mt-4 mb-2 bg-green-400 text-green-900">
-              {{ offer.scope }}
+              {{ offer.scope === 'public' ? 'Publiczna' : '' }}
             </div>
             <p class="font-semibold text-lg">{{ offer.name }}</p>
             <p>{{ offer.description }}</p>

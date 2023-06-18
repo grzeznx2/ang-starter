@@ -20,7 +20,6 @@ import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.
   template: `
     <ng-container *ngIf="state() as state">
       <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="MŚP" [list]="state.list">
-        <div #filters>filtry</div>
         <ng-template #item let-company>
           <div class="mb-4 h-10">
             <p class="font-semibold text-lg">{{ company.name }}</p>

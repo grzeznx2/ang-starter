@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { HasRolePipe } from '../auth/utils/has-role.pipe';
 import { UserRoles } from '../core/user-roles.enum';
 import { AuthService } from '../auth/data_access/auth.service';
@@ -31,16 +31,17 @@ export interface MenuItem {
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-        <mat-toolbar>Menu</mat-toolbar>
+        <mat-toolbar></mat-toolbar>
         <mat-nav-list>
           <a *ngFor="let menuItem of menuItems | hasRole" mat-list-item [routerLink]="menuItem.link">
-            <mat-icon *ngIf="menuItem.icon">{{ menuItem.icon }}</mat-icon>
-            {{ menuItem.displayValue }}</a
+            <div class="flex text-sm" [routerLinkActive]="'font-semibold'">
+              <mat-icon *ngIf="menuItem.icon" class="mr-2">{{ menuItem.icon }}</mat-icon> {{ menuItem.displayValue }}
+            </div></a
           >
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar>
+        <mat-toolbar color="primary">
           <button
             type="button"
             aria-label="Toggle sidenav"
@@ -57,9 +58,9 @@ export interface MenuItem {
               </div>
               <span class="text-xs ml-2 text-blue-300">na fali pomocy</span>
             </div>
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-start">
               <a routerLink="/messages" class="block"
-                ><mat-icon class="!w-9 !h-9 text-4xl"> local_post_office</mat-icon>
+                ><mat-icon class="!w-9 !h-9 text-3xl"> local_post_office</mat-icon>
               </a>
               <button class="ml-4" mat-button (click)="logout()">Wyloguj</button>
             </div>
@@ -121,7 +122,7 @@ export default class ShellComponent {
     { icon: '', link: '/ngos', displayValue: 'Lista NGO', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
     { icon: '', link: '/offers', displayValue: 'Lista ofert', roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'] },
     {
-      icon: 'view_cozy',
+      icon: '',
       link: '/companies',
       displayValue: 'Lista MŚP',
       roles: ['NGO_USER', 'ADMIN', 'COMPANY_USER', 'CITIZEN'],

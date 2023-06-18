@@ -32,8 +32,10 @@ import { Router } from '@angular/router';
   ],
   template: `
     <ng-container *ngIf="state() as state">
-      <app-list-shell *ngIf="state.loadListCallState === 'LOADED'" listName="Ngo's" [list]="state.list">
-        <div #filters>filtry</div>
+      <app-list-shell
+        *ngIf="state.loadListCallState === 'LOADED'"
+        listName="Organizacje pozarządowe"
+        [list]="state.list">
         <ng-template #item let-ngo>
           <div class="mb-4 h-10">
             <p class="font-semibold text-lg">{{ ngo.name }}</p>
