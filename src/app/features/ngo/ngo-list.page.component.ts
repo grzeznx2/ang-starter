@@ -13,6 +13,8 @@ import { take, tap } from 'rxjs';
 import { ListDialogComponent } from 'src/app/shared/ui/common-list-dialog.component';
 import { LegalStatusPipe } from './utils/legal-status.pipe';
 import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ngo-list-page',
@@ -26,6 +28,7 @@ import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.
     MatDialogModule,
     SlicePipe,
     LegalStatusPipe,
+    MatButtonModule,
   ],
   template: `
     <ng-container *ngIf="state() as state">
@@ -48,6 +51,9 @@ import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.
           </div>
           <div class="mb-4">
             <p>{{ (ngo.description | slice : 0 : 160) + '...' }}</p>
+            <div class="flex justify-end">
+              <button mat-button color="accent" (click)="goTo(ngo.id)">Szczegóły</button>
+            </div>
           </div>
           <mat-divider />
           <div class="flex justify-between mt-4">
@@ -74,6 +80,7 @@ import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.
 export default class NgoListPageComponent implements OnInit {
   snackbar = inject(MatSnackBar);
   messagesService = inject(MessagesApiService);
+  router = inject(Router);
 
   service = inject(NGOsApiService);
   state = inject(NGOsStateService).$value;
@@ -81,6 +88,10 @@ export default class NgoListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAll();
+  }
+
+  goTo(id: string) {
+    this.router.navigateByUrl(`/ngos/${id}`);
   }
 
   openMessageModal(id: string, name: string) {

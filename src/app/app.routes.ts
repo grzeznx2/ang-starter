@@ -26,6 +26,10 @@ export const routes: Routes = [
             loadComponent: () => import('./features/ngo/ngo-list.page.component'),
           },
           {
+            path: 'ngos/:id',
+            loadComponent: () => import('./features/ngo/ngo-details.page.component'),
+          },
+          {
             path: 'manage/offers',
             loadComponent: () => import('./features/offers/manage-offers.page.component'),
           },
