@@ -248,7 +248,70 @@
       "budget": 0,
       "categories": [],
       "id": 6
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "COMPLETED"
+      },
+      "tags": ["edukacja", "młodzież", "świadomość morska"],
+      "ngo": "Liga Morska i Rzeczna",
+      "ngoId": "1",
+      "name": "Edukacyjny program o znaczeniu gospodarki wodnej",
+      "imageLink": "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      "description": "Edukacyjny program mający na celu kształtowanie zrozumienia roli i znaczenia gospodarki wodnej, żeglugi morskiej i śródlądowej.",
+      "startTime": "2023-01-01T23:00:00.000Z",
+      "endTime": "2024-02-30T24:00:00.000Z",
+      "link": "https://www.facebook.com/lmir.gdynia/?locale=pl_PL",
+      "possibleVolunteer": false,
+      "budget": "50000",
+      "categories": [],
+      "cooperationMessage": "",
+      "id": 10
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "IN_PROMOTION"
+      },
+      "tags": ["kultura", "sztuka", "marynistyka"],
+      "ngo": "Liga Morska i Rzeczna",
+      "ngoId": "1",
+      "name": "Festiwal Kultury Morskiej",
+      "imageLink": "https://plus.unsplash.com/premium_photo-1677829177686-25c35e44a1d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      "description": "Organizujemy festiwal promujący kulturę morską, sztukę, literaturę marynistyczną oraz sporty wodne.",
+      "startTime": "2023-08-01T23:00:00.000Z",
+      "endTime": "2023-08-10T24:00:00.000Z",
+      "link": "https://www.facebook.com/lmir.gdynia/?locale=pl_PL",
+      "possibleVolunteer": true,
+      "budget": "30000",
+      "categories": [],
+      "cooperationMessage": "Szukamy artystów, muzyków, pisarzy i sportowców, którzy chcieliby wziąć udział w naszym festiwalu!",
+      "id": 11
+    },
+    {
+      "status": {
+        "id": 1,
+        "name": "OBTAINING_FINANCING"
+      },
+      "tags": ["tradycja", "patriotyzm", "marynarka"],
+      "ngo": "Liga Morska i Rzeczna",
+      "ngoId": "1",
+      "name": "Dni Tradycji Marynistycznej",
+      "imageLink": "https://images.unsplash.com/photo-1502825305473-fedeffa5b12c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80",
+      "description": "Wydarzenie mające na celu propagowanie patriotycznych postaw społeczeństwa oraz tradycji marynarki wojennej i handlowej.",
+      "startTime": "2023-09-04T23:00:00.000Z",
+      "endTime": "2023-09-07T24:00:00.000Z",
+      "link": "https://www.facebook.com/lmir.gdynia/?locale=pl_PL",
+      "possibleVolunteer": true,
+      "budget": "20000",
+      "categories": [],
+      "cooperationMessage": "Szukamy historyków, weteranów i innych osób, które chciałyby podzielić się swoją wiedzą i doświadczeniami podczas naszego wydarzenia!",
+      "id": 12
     }
+
+
+
   ],
   "companies": [
     {
