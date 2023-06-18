@@ -114,7 +114,14 @@
           "firstName": "Tomasz",
           "lastName": "Nowak",
           "email": "tom@wp.pl",
-          "userType": "TODO"
+          "userType": "Zarządzający"
+        },
+        {
+          "username": "Arkadiusz",
+          "firstName": "Arkadiusz",
+          "lastName": "Jurasik",
+          "email": "arek@gmail.com",
+          "userType": "Zarządzający"
         }
       ],
       "address": "Chodkiewicza 3B/1",
