@@ -10,9 +10,9 @@ import { MessagesApiService } from '../messages/data-access/messages.api.service
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/ui/common-message-dialog.component';
 import { take, tap } from 'rxjs';
-import { NGOContactDialogComponent } from './ngo-contact-dialog.component';
 import { ListDialogComponent } from 'src/app/shared/ui/common-list-dialog.component';
 import { LegalStatusPipe } from './utils/legal-status.pipe';
+import { ContactDialogComponent } from 'src/app/shared/ui/common-contact-dialog.component';
 
 @Component({
   selector: 'app-ngo-list-page',
@@ -130,7 +130,7 @@ export default class NgoListPageComponent implements OnInit {
   }
 
   openContactModal(address: string, phone: string, email: string, website: string) {
-    this.dialog.open(NGOContactDialogComponent, {
+    this.dialog.open(ContactDialogComponent, {
       width: '650px',
       data: {
         address,

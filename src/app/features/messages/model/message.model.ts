@@ -1,4 +1,4 @@
-export type ReceiverType = 'ngo' | 'other';
+export type ReceiverType = 'ngo' | 'company' | 'other';
 
 export interface Message {
   id: string;

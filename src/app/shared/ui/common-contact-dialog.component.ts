@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatDividerModule, NgFor, MatIconModule],
 })
-export class NGOContactDialogComponent {
+export class ContactDialogComponent {
   data = inject(MAT_DIALOG_DATA);
-  dialogRef = inject<MatDialogRef<NGOContactDialogComponent>>(MatDialogRef);
+  dialogRef = inject<MatDialogRef<ContactDialogComponent>>(MatDialogRef);
 }

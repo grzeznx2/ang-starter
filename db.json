@@ -252,18 +252,81 @@
   ],
   "companies": [
     {
-      "id": 1,
-      "name": "Piraci z Karaibów"
+      "id": "comp001",
+      "name": "Technologiczny Startup Kołobrzeg",
+      "owners": ["user001", "user002"],
+      "address": "ul. Morska 1, 78-100 Kołobrzeg",
+      "phone": "+48123456789",
+      "email": "kontakt@tsk.pl",
+      "website": "https://www.tsk.pl",
+      "socialLinks": ["https://www.facebook.com/tsk", "https://www.linkedin.com/tsk"],
+      "creationDate": "2020-07-12",
+      "description": "Jesteśmy innowacyjnym startupem technologicznym z Kołobrzegu, specjalizującym się w tworzeniu zaawansowanych rozwiązań dla sektora medycznego. Nasze produkty pomagają lekarzom i pacjentom w zarządzaniu informacjami o stanie zdrowia, a także umożliwiają zdalną komunikację i konsultacje. Wierzymy w moc technologii w przekształcaniu opieki zdrowotnej i dążymy do bycia na czele tej transformacji.",
+      "businnessAreas": [
+        {
+          "id": 5,
+          "name": "Technologia"
+        },
+        {
+          "id": 6,
+          "name": "Medycyna"
+        }
+      ],
+      "KRS": "1234567890",
+      "NIP": "9876543210",
+      "resource": ["res001", "res002"],
+      "donatedProjects": ["proj001", "proj002"]
     },
     {
-      "id": 2,
-      "name": "Natura 2030"
+      "id": "comp002",
+      "name": "Restauracja Przystań",
+      "owners": ["user003"],
+      "address": "ul. Portowa 2, 78-100 Kołobrzeg",
+      "phone": "+48123456790",
+      "email": "kontakt@przystan.kolobrzeg.pl",
+      "website": "https://www.przystan.kolobrzeg.pl",
+      "socialLinks": ["https://www.facebook.com/przystan"],
+      "creationDate": "2018-05-16",
+      "description": "Nasza restauracja oferuje najlepsze dania kuchni bałtyckiej, skupiając się na świeżych, lokalnych składnikach i autentycznych przepisach. Położona w sercu Kołobrzegu, z widokiem na morze, Restauracja Przystań jest idealnym miejscem na rodzinny obiad, romantyczną kolację czy spotkanie z przyjaciółmi. Pragniemy, by każdy posiłek u nas był nie tylko satysfakcjonującym doświadczeniem kulinarycznym, ale także niezapomnianym przeżyciem.",
+      "businnessAreas": [
+        {
+          "id": 7,
+          "name": "Rozwój społeczności lokalnych"
+        }
+      ],
+      "KRS": "1234567891",
+      "NIP": "9876543211",
+      "resource": ["res003"],
+      "donatedProjects": ["proj003"]
     },
     {
-      "id": 3,
-      "name": "Nadmorski przygody"
+      "id": "comp003",
+      "name": "Kołobrzeska Galeria Sztuki",
+      "owners": ["user004", "user005"],
+      "address": "ul. Sztuki 3, 78-100 Kołobrzeg",
+      "phone": "+48123456791",
+      "email": "kontakt@galeria.kolobrzeg.pl",
+      "website": "https://www.galeria.kolobrzeg.pl",
+      "socialLinks": ["https://www.facebook.com/galeriasztuki"],
+      "creationDate": "2005-11-11",
+      "description": "Promujemy lokalnych artystów i organizujemy wystawy sztuki współczesnej, które angażują społeczność Kołobrzegu i przyciągają zwiedzających z całego kraju. Nasza misja to rozwijanie kultury i sztuki w regionie, tworzenie przestrzeni do dyskusji i refleksji, a także edukowanie publiczności na temat wartości i znaczenia sztuki. Wierzymy, że sztuka ma moc inspirowania i łączenia ludzi, a nasza galeria jest miejscem, gdzie te spotkania mogą się zdarzyć",
+      "businnessAreas": [
+        {
+          "id": 5,
+          "name": "Kultura i sztuka"
+        },
+        {
+          "id": 7,
+          "name": "Rozwój społeczności lokalnych"
+        }
+      ],
+      "KRS": "1234567892",
+      "NIP": "9876543212",
+      "resource": ["res004", "res005"],
+      "donatedProjects": ["proj004", "proj005"]
     }
-  ],
+  ]
+  ,
   "messages": [
     {
       "title": "Propozycja współpracy",
