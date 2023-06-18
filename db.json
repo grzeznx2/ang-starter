@@ -108,7 +108,15 @@
       "id": "1",
       "name": "Liga Morska i Rzeczna",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8FrynfNWwTmBbEfOPqymLJyWdmacr1uHBLx7cTBoSBQ&s",
-      "owners": [],
+      "owners": [
+        {
+          "username": "TomaszNowak",
+          "firstName": "Tomasz",
+          "lastName": "Nowak",
+          "email": "tom@wp.pl",
+          "userType": "TODO"
+        }
+      ],
       "address": "Chodkiewicza 3B/1",
       "phone": "693 996 135",
       "email": "gabiantos@interia.pl",
@@ -254,7 +262,11 @@
         "id": 1,
         "name": "COMPLETED"
       },
-      "tags": ["edukacja", "młodzież", "świadomość morska"],
+      "tags": [
+        "edukacja",
+        "młodzież",
+        "świadomość morska"
+      ],
       "ngo": "Liga Morska i Rzeczna",
       "ngoId": "1",
       "name": "Edukacyjny program o znaczeniu gospodarki wodnej",
@@ -274,7 +286,11 @@
         "id": 1,
         "name": "IN_PROMOTION"
       },
-      "tags": ["kultura", "sztuka", "marynistyka"],
+      "tags": [
+        "kultura",
+        "sztuka",
+        "marynistyka"
+      ],
       "ngo": "Liga Morska i Rzeczna",
       "ngoId": "1",
       "name": "Festiwal Kultury Morskiej",
@@ -294,7 +310,11 @@
         "id": 1,
         "name": "OBTAINING_FINANCING"
       },
-      "tags": ["tradycja", "patriotyzm", "marynarka"],
+      "tags": [
+        "tradycja",
+        "patriotyzm",
+        "marynarka"
+      ],
       "ngo": "Liga Morska i Rzeczna",
       "ngoId": "1",
       "name": "Dni Tradycji Marynistycznej",
@@ -314,7 +334,11 @@
         "id": 1,
         "name": "IDEA"
       },
-      "tags": ["edukacja", "młodzież", "rozwój"],
+      "tags": [
+        "edukacja",
+        "młodzież",
+        "rozwój"
+      ],
       "ngo": "ZHP Bałtycki Hufiec Morski w Kołobrzegu",
       "ngoId": "2",
       "name": "Letni obóz harcerski",
@@ -334,7 +358,11 @@
         "id": 1,
         "name": "PLANNED"
       },
-      "tags": ["rozwoj osobisty", "wychowanie", "dzieci i młodzież"],
+      "tags": [
+        "rozwoj osobisty",
+        "wychowanie",
+        "dzieci i młodzież"
+      ],
       "ngo": "ZHP Bałtycki Hufiec Morski w Kołobrzegu",
       "ngoId": "2",
       "name": "Program przeciwdziałania nałogom",
@@ -354,9 +382,14 @@
         "id": 1,
         "name": "OBTAINING_FINANCING"
       },
-      "tags": ["sport", "edukacja", "młodzież", "rozwój"],
+      "tags": [
+        "sport",
+        "edukacja",
+        "młodzież",
+        "rozwój"
+      ],
       "ngo": "Kołobrzeski Międzyszkolny Klub Lekkoatletyczny 'Sztorm'",
-      "ngoId":"3",
+      "ngoId": "3",
       "name": "Lekkoatletyczne warsztaty weekendowe",
       "imageLink": "https://images.unsplash.com/photo-1534185372994-55f9e64235c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       "description": "Organizujemy weekendowe warsztaty lekkoatletyczne dla uczniów, które pomogą im rozwinąć ich umiejętności i zainteresowania sportowe.",
@@ -369,23 +402,23 @@
       "cooperationMessage": "Szukamy trenerów lekkoatletyki i wolontariuszy do pomocy w organizacji warsztatów!",
       "id": 15
     }
-
-
-
-
-
-
   ],
   "companies": [
     {
       "id": "comp001",
       "name": "Technologiczny Startup Kołobrzeg",
-      "owners": ["user001", "user002"],
+      "owners": [
+        "user001",
+        "user002"
+      ],
       "address": "ul. Morska 1, 78-100 Kołobrzeg",
       "phone": "+48123456789",
       "email": "kontakt@tsk.pl",
       "website": "https://www.tsk.pl",
-      "socialLinks": ["https://www.facebook.com/tsk", "https://www.linkedin.com/tsk"],
+      "socialLinks": [
+        "https://www.facebook.com/tsk",
+        "https://www.linkedin.com/tsk"
+      ],
       "creationDate": "2020-07-12",
       "description": "Jesteśmy innowacyjnym startupem technologicznym z Kołobrzegu, specjalizującym się w tworzeniu zaawansowanych rozwiązań dla sektora medycznego. Nasze produkty pomagają lekarzom i pacjentom w zarządzaniu informacjami o stanie zdrowia, a także umożliwiają zdalną komunikację i konsultacje. Wierzymy w moc technologii w przekształcaniu opieki zdrowotnej i dążymy do bycia na czele tej transformacji.",
       "businnessAreas": [
@@ -400,18 +433,28 @@
       ],
       "KRS": "1234567890",
       "NIP": "9876543210",
-      "resource": ["res001", "res002"],
-      "donatedProjects": ["proj001", "proj002"]
+      "resource": [
+        "res001",
+        "res002"
+      ],
+      "donatedProjects": [
+        "proj001",
+        "proj002"
+      ]
     },
     {
       "id": "comp002",
       "name": "Restauracja Przystań",
-      "owners": ["user003"],
+      "owners": [
+        "user003"
+      ],
       "address": "ul. Portowa 2, 78-100 Kołobrzeg",
       "phone": "+48123456790",
       "email": "kontakt@przystan.kolobrzeg.pl",
       "website": "https://www.przystan.kolobrzeg.pl",
-      "socialLinks": ["https://www.facebook.com/przystan"],
+      "socialLinks": [
+        "https://www.facebook.com/przystan"
+      ],
       "creationDate": "2018-05-16",
       "description": "Nasza restauracja oferuje najlepsze dania kuchni bałtyckiej, skupiając się na świeżych, lokalnych składnikach i autentycznych przepisach. Położona w sercu Kołobrzegu, z widokiem na morze, Restauracja Przystań jest idealnym miejscem na rodzinny obiad, romantyczną kolację czy spotkanie z przyjaciółmi. Pragniemy, by każdy posiłek u nas był nie tylko satysfakcjonującym doświadczeniem kulinarycznym, ale także niezapomnianym przeżyciem.",
       "businnessAreas": [
@@ -422,18 +465,27 @@
       ],
       "KRS": "1234567891",
       "NIP": "9876543211",
-      "resource": ["res003"],
-      "donatedProjects": ["proj003"]
+      "resource": [
+        "res003"
+      ],
+      "donatedProjects": [
+        "proj003"
+      ]
     },
     {
       "id": "comp003",
       "name": "Kołobrzeska Galeria Sztuki",
-      "owners": ["user004", "user005"],
+      "owners": [
+        "user004",
+        "user005"
+      ],
       "address": "ul. Sztuki 3, 78-100 Kołobrzeg",
       "phone": "+48123456791",
       "email": "kontakt@galeria.kolobrzeg.pl",
       "website": "https://www.galeria.kolobrzeg.pl",
-      "socialLinks": ["https://www.facebook.com/galeriasztuki"],
+      "socialLinks": [
+        "https://www.facebook.com/galeriasztuki"
+      ],
       "creationDate": "2005-11-11",
       "description": "Promujemy lokalnych artystów i organizujemy wystawy sztuki współczesnej, które angażują społeczność Kołobrzegu i przyciągają zwiedzających z całego kraju. Nasza misja to rozwijanie kultury i sztuki w regionie, tworzenie przestrzeni do dyskusji i refleksji, a także edukowanie publiczności na temat wartości i znaczenia sztuki. Wierzymy, że sztuka ma moc inspirowania i łączenia ludzi, a nasza galeria jest miejscem, gdzie te spotkania mogą się zdarzyć",
       "businnessAreas": [
@@ -448,11 +500,16 @@
       ],
       "KRS": "1234567892",
       "NIP": "9876543212",
-      "resource": ["res004", "res005"],
-      "donatedProjects": ["proj004", "proj005"]
+      "resource": [
+        "res004",
+        "res005"
+      ],
+      "donatedProjects": [
+        "proj004",
+        "proj005"
+      ]
     }
-  ]
-  ,
+  ],
   "messages": [
     {
       "title": "Propozycja współpracy",

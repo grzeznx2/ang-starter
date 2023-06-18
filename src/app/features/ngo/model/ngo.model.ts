@@ -1,5 +1,6 @@
 import { User } from 'src/app/auth/data_access/auth.state.service';
 import { Project } from '../../projects/model/project.model';
+import { UserData } from 'src/app/auth/models/user.model';
 
 export interface BusinessArea {
   name: string;
@@ -23,7 +24,7 @@ export interface NGO {
   id: string;
   name: string;
   logo: string;
-  owners: User[];
+  owners: UserData[];
   address: string;
   phone: string;
   email: string;
@@ -37,7 +38,7 @@ export interface NGO {
   resources: string[];
   legalStatus: LegalStatusNGO;
   // donors: Company[];
-  employees: User[];
+  employees: UserData[];
   projects: Project[];
   tags: string[];
 }

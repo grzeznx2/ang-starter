@@ -3,7 +3,6 @@ import { HttpBaseService } from 'src/app/core/http-base.abstract.service';
 import { AuthStateService, User } from './auth.state.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserRoles } from 'src/app/core/user-roles.enum';
 
 export interface LoginFormValue {
   login: string;

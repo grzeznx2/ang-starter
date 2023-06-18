@@ -3,7 +3,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { NGOsApiService } from './data-access/ngos.api.service';
 import { NGOsStateService } from './data-access/ngos.state.service';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { tap } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { BusinessArea, NGO } from './model/ngo.model';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-ngo-list-page',
@@ -25,6 +26,7 @@ import { BusinessArea, NGO } from './model/ngo.model';
     MatChipsModule,
     MatIconModule,
     CommonModule,
+    MatDividerModule,
   ],
   template: `
     <ng-container *ngIf="state() as state">
@@ -136,6 +138,40 @@ import { BusinessArea, NGO } from './model/ngo.model';
           </div>
 
           <br />
+          <mat-divider />
+          <br />
+          <div formArrayName="owners">
+            <div class="flex items-center mb-4">
+              <h2 class="font-bold !m-0">Członkowie</h2>
+              <mat-icon class="cursor-pointer ml-3 text-green-700" (click)="addUser()">add_circle</mat-icon>
+            </div>
+            <div *ngFor="let user of form.controls.owners.controls; let i = index" [formGroupName]="i">
+              <div class="flex gap-4 items-center">
+                <mat-form-field>
+                  <mat-label>Nazwa użytkownika</mat-label>
+                  <input formControlName="username" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Imię</mat-label>
+                  <input formControlName="firstName" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Nazwisko</mat-label>
+                  <input formControlName="lastName" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input formControlName="email" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Typ</mat-label>
+                  <input formControlName="userType" matInput />
+                </mat-form-field>
+                <mat-icon class="cursor-pointer ml-3 text-red-700 mb-5" (click)="removeUser(i)">remove_circle</mat-icon>
+              </div>
+            </div>
+          </div>
+
           <div class="flex justify-center">
             <button mat-raised-button color="primary">Zapisz</button>
           </div>
@@ -169,6 +205,7 @@ export default class NgoProfilePageComponent implements OnInit {
           NIP,
           businnessAreas,
           logo,
+          owners,
         } = profile;
         this.form.patchValue({
           name,
@@ -184,6 +221,22 @@ export default class NgoProfilePageComponent implements OnInit {
           businnessAreas,
           logo,
         });
+
+        for (let i = 0; i <= this.form.controls.owners.length; i++) {
+          this.form.controls.owners.removeAt(0);
+        }
+
+        for (const owner of owners) {
+          this.form.controls.owners.push(
+            this.builder.group({
+              username: owner.username,
+              firstName: owner.firstName,
+              lastName: owner.lastName,
+              email: owner.email,
+              userType: owner.userType,
+            })
+          );
+        }
 
         this.tags = tags;
       })
@@ -207,6 +260,7 @@ export default class NgoProfilePageComponent implements OnInit {
     tags: this.builder.control(['']),
     creationDate: this.builder.control(''),
     businnessAreas: this.builder.control<{ id: number; name: string }[]>([]),
+    owners: this.builder.array([this.initUser()]),
   });
 
   tags: string[] = [];
@@ -224,6 +278,25 @@ export default class NgoProfilePageComponent implements OnInit {
       ...this.ngoProfile,
       ...this.form.value,
     });
+  }
+
+  initUser(): FormGroup {
+    return this.builder.group({
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      userType: '',
+    });
+  }
+
+  addUser() {
+    this.form.controls.owners.push(this.initUser());
+  }
+
+  removeUser(i: number) {
+    const control = this.form.controls.owners;
+    control.removeAt(i);
   }
 
   add(event: MatChipInputEvent): void {
