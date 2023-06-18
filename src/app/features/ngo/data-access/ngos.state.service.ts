@@ -6,13 +6,17 @@ import { StateService } from 'src/app/core/state.service';
 export interface NGOsStateValue {
   list: NGO[];
   loadListCallState: CallState;
+  loadByIdCallState: CallState;
   profile: NGO | null;
+  details: NGO | null;
   loadProfileCallState: CallState;
   updateProfileCallState: CallState;
 }
 
 const initialState: NGOsStateValue = {
   list: [],
+  details: null,
+  loadByIdCallState: 'INITIAL',
   loadListCallState: 'INITIAL',
   loadProfileCallState: 'INITIAL',
   updateProfileCallState: 'INITIAL',

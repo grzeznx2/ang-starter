@@ -65,4 +65,17 @@ export class NGOsApiService extends HttpBaseService {
       )
       .subscribe();
   }
+
+  getById(id: string) {
+    this.stateService.setState({ loadByIdCallState: 'LOADING' });
+
+    this.http
+      .get<NGO>(`${this.url}/${id}`)
+      .pipe(
+        tap(ngo => {
+          this.stateService.setState({ loadByIdCallState: 'LOADED', details: ngo });
+        })
+      )
+      .subscribe();
+  }
 }
