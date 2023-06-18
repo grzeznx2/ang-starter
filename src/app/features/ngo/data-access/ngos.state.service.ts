@@ -5,10 +5,10 @@ import { StateService } from 'src/app/core/state.service';
 
 export interface NGOsStateValue {
   list: NGO[];
-  loadListCallState: CallState;
-  loadByIdCallState: CallState;
   profile: NGO | null;
   details: NGO | null;
+  loadListCallState: CallState;
+  loadByIdCallState: CallState;
   loadProfileCallState: CallState;
   updateProfileCallState: CallState;
 }
@@ -16,11 +16,11 @@ export interface NGOsStateValue {
 const initialState: NGOsStateValue = {
   list: [],
   details: null,
+  profile: null,
   loadByIdCallState: 'INITIAL',
   loadListCallState: 'INITIAL',
   loadProfileCallState: 'INITIAL',
   updateProfileCallState: 'INITIAL',
-  profile: null,
 };
 
 @Injectable({

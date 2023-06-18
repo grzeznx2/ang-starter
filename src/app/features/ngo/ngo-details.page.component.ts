@@ -11,6 +11,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MessageDialogComponent, MessageDialogFormValue } from 'src/app/shared/ui/common-message-dialog.component';
 import { take, tap } from 'rxjs';
+import { ProjectsApiService } from '../projects/data-access/projects.api.service';
+import { ProjectsStateService } from '../projects/data-access/projects.state.service';
 
 @Component({
   selector: 'app-ngo-details-page',
@@ -107,11 +109,14 @@ export default class NgoDetailsPageComponent implements OnInit {
 
   service = inject(NGOsApiService);
   state = inject(NGOsStateService).$value;
+  projectsService = inject(ProjectsApiService);
+  projectsState = inject(ProjectsStateService).$value;
   dialog = inject(MatDialog);
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.service.getById(id);
+    this.projectsService.getByNGOId(id);
   }
 
   openMessageModal(id: string, name: string) {

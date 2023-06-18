@@ -66,6 +66,19 @@ export class ProjectsApiService extends HttpBaseService {
     return this.http.get<Project>(`${this.url}/${id}`);
   }
 
+  getByNGOId(id: string) {
+    this.stateService.setState({ loadListByNGOIdCallState: 'LOADING' });
+
+    this.http
+      .get<Project[]>(`${this.url}/?ngoId=${id}`)
+      .pipe(
+        tap(projects => {
+          this.stateService.setState({ loadListByNGOIdCallState: 'LOADED', listByNGOId: projects });
+        })
+      )
+      .subscribe();
+  }
+
   getAll(params: GetAllProjectsParams = {}) {
     this.stateService.setState({ loadListCallState: 'LOADING' });
 
